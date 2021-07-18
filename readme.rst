@@ -2,34 +2,12 @@
  2D-Doc parser library
 =======================
 
-This is a `2D-Doc <2ddoc>`_ parser library. It is able to decode a
+This is a `2D-Doc <2ddoc>`_ parser library. It is able to decode and
 pretty-print a 2D-Doc as defined by French ANTS, and is also able to
 verify signature.
 
 Usage
 =====
-
-API
----
-
-A basic parsing sessions boils down to:
-
-.. code:: python
-
-  >>> from tdd.doc import TwoDDoc
-  >>> c = TwoDDoc.from_code('DC03FR000001FFFF18EAA501AL12345678901AI30112019\x1fUBVQ7MMXTQ5FE3LZPIAZY6HZNGQJ3GLTKU6T4NJ5PGSKFECBUQIAPEWMZYIIEHZSQBDKG2QCJIXUONTMFXYMYYTTITJAOCVJQ7EOARY')
-  >>> c.header.cert_id
-  '0001'
-  >>> c.header.doc_type().user_type
-  "Justificatif d'activité"
-  >>> c.header.doc_type().emitter_type
-  'Carte T3P'
-  >>> c.message.dataset
-  [<tdd.message.FixedData object at 0x10ab320a0>, <tdd.message.FixedData object at 0x10ab32310>]
-  >>> c.message.dataset[0].definition.name
-  'Numéro de la carte'
-  >>> c.message.dataset[0].value
-  '12345678901'
 
 Dumper
 ------
@@ -54,6 +32,34 @@ line with:
     Date d’expiration initiale: 2019-11-30
   Sign: a06b0fb1979c3a526d797a019c78f969a09d9973553d3e353d79a4a29041a4100792ccce10821f328046a36a024a2f47366c2df0cc627344d2070aa987c8e047
   Signature OK
+
+API
+---
+
+A basic parsing sessions boils down to:
+
+.. code:: python
+
+  >>> from tdd.doc import TwoDDoc
+  >>> c = TwoDDoc.from_code(open('samples/spec/3.1.3/15.2.2/17.txt', 'r').read().strip())
+  >>> c.header.doc_type().user_type
+  "Justificatif d'activité"
+  >>> c.header.doc_type().emitter_type
+  'Carte T3P'
+  >>> c.message.dataset
+  [<tdd.message.FixedData object at 0x10ab320a0>, <tdd.message.FixedData object at 0x10ab32310>]
+  >>> c.message.dataset[0].definition.name
+  'Numéro de la carte'
+  >>> c.message.dataset[0].value
+  '12345678901'
+  >>> from tdd.keychain import internal
+  >>> chain = internal()
+  >>> c.header.ca_id
+  'FR00'
+  >>> c.header.cert_id
+  '0001'
+  >>> c.signature_is_valid(chain)
+  True
 
 TODO
 ====
