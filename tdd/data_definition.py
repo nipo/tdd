@@ -69,11 +69,27 @@ class StringAZSpSl(String):
 class StringAZ09Dash(String):
     allowed_format = re.compile(r'[A-Z0-9-]*')
 
+class StringAZ09DashSl(String):
+    allowed_format = re.compile(r'[A-Z0-9/-]*')
+
+class StringAZ09SpAtDash(String):
+    allowed_format = re.compile(r'[A-Z0-9@\' -]*')
+
 class Numeric(String):
     allowed_format = re.compile(r'[0-9]*')
 
 class Numeric0(String):
     allowed_format = re.compile(r'[0-9]*')
+    pad_pre = '0'
+
+class NumericSp(String):
+    allowed_format = re.compile(r'[0-9 ]*')
+
+class NumericSl(String):
+    allowed_format = re.compile(r'[0-9/]*')
+
+class Hex(String):
+    allowed_format = re.compile(r'[0-9A-F -]*')
     pad_pre = '0'
 
 QualName = StringAZ09SpSl
@@ -274,6 +290,9 @@ c40 = Definitions(
               Doctype("C6", "Autorisations douanière", "Agrément de transfert d’armes à feu et de munitions"),
               Doctype("B2", "Résultats des tests virologiques", "Test COVID"),
               Doctype("L1", "Attestation Vaccinale", "Attestation Vaccinale"),
+              Doctype("16", "Justificatif d’Asile", "Attestation de Demande d’Asile"),
+              Doctype("17", "Justificatif d’Asile", "Attestation de fin de droit à l'allocation pour demandeur d'asile (ADA"),
+              Doctype("L1", "Caducée Infirmier", "Caducée Infirmier"),
 
               Group("Identifiants de données complémentaires du code 2D-DOC",
                     Definition("01", "Identifiant unique du document", 0, None, String),
@@ -288,6 +307,7 @@ c40 = Definitions(
                     Definition("0A", "Editeur du 2D-Doc", 9, 9, Numeric0),
                     Definition("0B", "Intégrateur du 2D-Doc", 9, 9, Numeric0),
                     Definition("0C", "URL du document", 0, None, StringBase32),
+                    Definition("0D", "UUID du document", 36, 36, Hex),
               ),
 
               Group("Identifiants de données propres aux factures",
@@ -348,10 +368,36 @@ c40 = Definitions(
 
               Group("Identifiants de données fiscales",
                     Definition("40", "Numéro fiscal", 13, 13, Numeric0),
-                    Definition("41", "Revenu fiscal de référence", 0, None, Numeric),
-                    Definition("42", "Situation du foyer", 0, None, StringAZ),
-                    Definition("43", "Nombre de parts", 0, None, Numeric),
-                    Definition("44", "Référence d’avis d’impôt", 13, 13, Numeric0),
+                    Definition("41", "Revenu fiscal de référence", 0, 12, Numeric),
+                    Definition("42", "Situation du foyer", 0, None, StringAZSp),
+                    Definition("43", "Nombre de parts", 0, 5, Decimal),
+                    Definition("44", "Référence d’avis d’impôt", 13, 13, StringAZ09Sp),
+                    Definition("45", "Année des revenus", 4, 4, Numeric0),
+                    Definition("46", "Déclarant 1", 0, 38, StringAZ),
+                    Definition("47", "Numéro fiscal du déclarant 1", 13, 13, Numeric0),
+                    Definition("48", "Déclarant 2", 0, 38, StringAZ),
+                    Definition("49", "Numéro fiscal du déclarant 2", 13, 13, Numeric0),
+                    Definition("4A", "Date de mise en recouvrement",  8, 8, StringAZ),
+                    Definition("4B", "Date de la déclaration",  8, 8, JJMMAAAA),
+                    Definition("4C", "Date d’enregistrement",  8, 8, JJMMAAAA),
+                    Definition("4D", "Montant du don (en €)",  0, 12, Numeric),
+                    Definition("4E", "Montant des droits payés (en €)",  0, 12, Numeric),
+                    Definition("4F", "Référence d’enregistrement",  15, 15, StringAZ09),
+                    Definition("4G", "Nom du donataire", 0, 38, StringAZ09Dash),
+                    Definition("4H", "Nom(s) du(es) donateur(s)", 0, 77, StringAZ09SpSl),
+                    Definition("4I", "Montant Taxable (en €)", 0, 12, Numeric),
+                    Definition("4J", "Montant de la cession (en €)", 0, 12, Numeric),
+                    Definition("4K", "Nom du cessionnaire", 0, 38, StringAZ09SpAtDash),
+                    Definition("4L", "Nom du cédant", 0, 38, StringAZ09SpAtDash),
+                    Definition("4M", "Taux applicable", 0, 3, Decimal),
+                    Definition("4N", "Nom et prénoms du déclarant", 0, 38, StringAZSp),
+                    Definition("4O", "Ligne 4 d’adresse du déclarant", 0, 38, StringAZSp),
+                    Definition("4P", "Code postal du déclarant", 5, 5, Numeric0),
+                    Definition("4Q", "Commune du déclarant", 0, 32, StringAZSp),
+                    Definition("4R", "SIP gestionnaire", 0, 30, StringAZSp),
+                    Definition("4S", "Millésime", 4, 4, Numeric0),
+                    Definition("4T", "Administration cantonale suisse", 0, 30, StringAZSp),
+                    Definition("4U", "Dénomination sociale de l’employeur", 0, 38, StringAZ09Sp),
               ),
 
               Group("Identifiants de données relatives à l’activité professionnelle",
@@ -453,6 +499,7 @@ c40 = Definitions(
                     Definition("7M", "Identification du médecin", 0, 64, StringAZ09Sp),
                     Definition("7N", "Lieu de validation du certificat de décès", 0, 128, StringAZ09Sp),
                     Definition("7O", "Certificat de décès supplémentaire", 1, 1, Boolean),
+                    Definition("7P", "Identifiant du certificat", 16, 16, StringAZ09),
               ),
 
               Group("Identifiants relatifs aux activités professionnelles",
@@ -462,6 +509,7 @@ c40 = Definitions(
                     Definition("83", "Organisme de tutelle", 0, 40, StringAZ09Sp),
                     Definition("84", "Profession", 0, 40, StringAZ09Sp),
                     Definition("85", "Numéro de permis de chasser", 17, 17, StringAZ09Dash),
+                    Definition("86", "Numéro de licence", 12, 12, StringAZ09),
               ),
 
               Group("Identifiants relatifs aux données juridiques/judiciaires",
@@ -590,6 +638,36 @@ c40 = Definitions(
                     Definition("DW", "EORI du destinataire", 0, 50, StringAZ09),
                     Definition("DX", "TIN du destinataire", 4, 30, StringAZ09),
                     Definition("DY", "Nombre de lignes articles", 3, 3, Numeric0),
+                    Definition("DZ", "Numéro du bon de livraison", 0, 10, StringAZ09),
+                    Definition("H0", "Commune de l'expéditeur", 0, 38, Numeric0),
+                    Definition("H1", "Pays de l'expéditeur", 2, 2, StringAZ),
+                    Definition("H2", "Commune du destinataire", 0, 38, StringAZSp),
+                    Definition("H3", "Pays du destinataire", 2, 2, StringAZ),
+                    Definition("H4", "Date de départ", 8, 8, JJMMAAAA),
+                    Definition("H5", "Date prévisionnelle d’arrivée", 8, 8, JJMMAAAA),
+                    Definition("H6", "Numéro de plomb", 0, 40, Numeric),
+                    Definition("H7", "Codes douaniers", 0, 53, NumericSl),
+                    Definition("H8", "Nombre d’emballages articles", 7, 7, Numeric0),
+                    Definition("H9", "Poids brut articles", 8, 8, Numeric0),
+                    Definition("HA", "Poids net articles", 8, 8, Numeric0),
+                    Definition("HB", "Valeur douanière articles", 9, 9, Numeric0),
+                    Definition("HC", "But de la livraison", 0, 38, StringAZSp),
+                    Definition("HD", "Adresse de l'expéditeur", 0, 38, StringAZSp),
+                    Definition("HE", "Code postal et commune de l'expéditeur", 0, 38, StringAZSp),
+                    Definition("HF", "Adresse du destinataire", 0, 38, StringAZSp),
+                    Definition("HG", "Code postal et commune du destinataire", 0, 38, StringAZSp),
+                    Definition("HH", "Numéro d’identification du transport", 0, 20, StringAZ09DashSl),
+                    Definition("HI", "Numéro, extension et libellé de voie de l'adresse de résidence", 0, 38, StringAZSp),
+                    Definition("HJ", "Code postal de l'adresse de résidence", 5, 5, NumericSp),
+                    Definition("HK", "Commune de l'adresse de résidence", 0, 32, StringAZSp),
+                    Definition("HL", "Code pays de l'adresse de résidence", 2, 2, StringAZ),
+                    Definition("HM", "Numéro de la CEAF", 15, 18, StringAZSp),
+                    Definition("HN", "Date et heure d'édition", 12, 12, JJMMAAAAHHMM),
+                    Definition("HO", "Date d'expiration", 8, 8, JJMMAAAA),
+                    Definition("HP", "Numéro SIA", 12, 12, StringAZSp),
+                    Definition("HQ", "Nombre d'armes de catégorie A", 2, 2, Numeric0),
+                    Definition("HR", "Nombre d'armes de catégorie B", 2, 2, Numeric0),
+                    Definition("HS", "Nombre d'armes de catégorie C", 2, 2, Numeric0),
               ),
 
               Group("Identifiants de données relatives aux résultats des tests virologiques",
@@ -614,6 +692,37 @@ c40 = Definitions(
                     Definition("L8", "Nombre de doses attendues pour un cycle complet", 1, 1, Numeric0),
                     Definition("L9", "Date du dernier état du cycle de vaccination", 8, 8, JJMMAAAA),
                     Definition("LA", "Etat du cycle de vaccination", 2, 2, StringAZ),
+              ),
+
+              Group("Identifiants de données relatives à l’asile",
+                    Definition("G0", "Type de procédure", 2, 2, StringAZ),
+                    Definition("G1", "Orientation régionale", 2, 2, StringAZ),
+                    Definition("G2", "Numéro d’usager", 0, 20, StringAZ09),
+                    Definition("G3", "Date de fin des droits", 8, 8, JJMMAAAA),
+                    Definition("G4", "Somme des montants versés au titre de l'ADA", 0, 10, Decimal),
+                    Definition("G5", "Information de la Direction Territoriale", 0, 45, StringAZ09),
+              ),
+
+              Group("Identifiants de données relatives au permis de conduire",
+                    Definition("E0", "Type d’arrêtés Permis de conduire", 2, 2, StringAZ09),
+                    Definition("E1", "Date édition du document", 4, 4, Date4),
+                    Definition("E2", "Date de fin de sanction", 4, 4, Date4),
+                    Definition("E3", "Date de notification", 4, 4, Date4),
+                    Definition("E4", "Type de relevé de permis de conduire", 3, 3, StringAZ),
+                    Definition("E5", "Etat du permis de conduire du conducteur", 2, 2, Numeric0),
+                    Definition("E6", "Catégories présentes de permis de conduire", 0, 65, StringAZ09Sp),
+                    Definition("E7", "SIREN du demandeur du document", 9, 9, Numeric0),
+                    Definition("E8", "Date des données issues du SNCP", 12, 12, JJMMAAAAHHMM),
+              ),
+
+              Group("Identifiants de données relatives au caducée infirmier",
+                    Definition("I0", "Année du caducée", 4, 4, JJMMAAAA),
+                    Definition("I1", "Numéro ordinal", 7, 7, Numeric0),
+                    Definition("I2", "Mention spécifique", 16, 16, StringAZ09),
+                    Definition("I3", "Nom d’exercice", 1, 54, StringAZ09SpAtDash),
+                    Definition("I4", "Prénom d’exercice", 1, 37, StringAZ09SpAtDash),
+                    Definition("I5", "Mode d’exercice", 5, 13, StringAZ09Dash),
+                    Definition("I6", "Numéro RPPS", 11, 11, Numeric0),
               ),
     ),
 )

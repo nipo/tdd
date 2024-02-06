@@ -32,8 +32,8 @@ def dump(doc, keychain = None):
                 print("Signature OK")
             else:
                 print("Signature broken")
-        except KeyError:
-            print("Key not found")
+        except KeyError as e:
+            print("Key not found:", e)
 
 if __name__ == "__main__":
     import sys
