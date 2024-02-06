@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><tsl:TrustServiceStatusList xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ecc="http://uri.etsi.org/TrstSvc/SvcInfoExt/eSigDir-1999-93-EC-TrustedList/#" xmlns:tsl="http://uri.etsi.org/02231/v2#" xmlns:tslx="http://uri.etsi.org/02231/v2/additionaltypes#" xmlns:xades="http://uri.etsi.org/01903/v1.3.2#" TSLTag="http://uri.etsi.org/02231/TSLTag">
+	<tsl:SchemeInformation>
+		<tsl:TSLVersionIdentifier>5</tsl:TSLVersionIdentifier>
+		<tsl:TSLSequenceNumber>18</tsl:TSLSequenceNumber>
+		<tsl:TSLType>http://uri.etsi.org/TrstSvc/eSigDir-1999-93-EC-TrustedList/TSLType/generic</tsl:TSLType>
+		<tsl:SchemeOperatorName>
+			<tsl:Name xml:lang="fr">Agence Nationale des Titres Sécurisés</tsl:Name>
+		</tsl:SchemeOperatorName>
+		<tsl:SchemeOperatorAddress>
+			<tsl:PostalAddresses>
+				<tsl:PostalAddress xml:lang="fr">
+					<tsl:StreetAddress>101 rue de Tolbiac</tsl:StreetAddress>
+					<tsl:Locality>PARIS CEDEX 13</tsl:Locality>
+					<tsl:StateOrProvince>France</tsl:StateOrProvince>
+					<tsl:PostalCode>75013</tsl:PostalCode>
+					<tsl:CountryName>FR</tsl:CountryName>
+				</tsl:PostalAddress>
+				<tsl:PostalAddress xml:lang="en">
+					<tsl:StreetAddress>101 rue de Tolbiac</tsl:StreetAddress>
+					<tsl:Locality>PARIS CEDEX 13</tsl:Locality>
+					<tsl:StateOrProvince>France</tsl:StateOrProvince>
+					<tsl:PostalCode>75013</tsl:PostalCode>
+					<tsl:CountryName>FR</tsl:CountryName>
+				</tsl:PostalAddress>
+			</tsl:PostalAddresses>
+			<tsl:ElectronicAddress>
+				<tsl:URI xml:lang="fr">mailto:ants-cev-ac@interieur.gouv.fr</tsl:URI>
+			</tsl:ElectronicAddress>
+		</tsl:SchemeOperatorAddress>
+		<tsl:SchemeName>
+			<tsl:Name xml:lang="en">FR:2D-Doc</tsl:Name>
+			<tsl:Name xml:lang="fr">FR:2D-Doc</tsl:Name>
+		</tsl:SchemeName>
+		<tsl:SchemeInformationURI>
+			<tsl:URI xml:lang="fr">https://ants.gouv.fr/nos-missions/les-solutions-numeriques/2d-doc</tsl:URI>
+			<tsl:URI xml:lang="en">https://ants.gouv.fr/nos-missions/les-solutions-numeriques/2d-doc</tsl:URI>
+		</tsl:SchemeInformationURI>
+		<tsl:StatusDeterminationApproach>http://uri.etsi.org/TrstSvc/eSigDir-1999-93-ECTrustedList/StatusDetn/appropriate</tsl:StatusDeterminationApproach>
+		<tsl:SchemeTypeCommunityRules>
+			<tsl:URI xml:lang="fr">http://uri.etsi.org/TrstSvc/eSigDir-1999-93-EC-TrustedList/schemerules/common</tsl:URI>
+			<tsl:URI xml:lang="fr">http://uri.etsi.org/TrstSvc/eSigDir-1999-93-EC-TrustedList/schemerules/FR</tsl:URI>
+		</tsl:SchemeTypeCommunityRules>
+		<tsl:SchemeTerritory>FR</tsl:SchemeTerritory>
+		<tsl:PolicyOrLegalNotice>
+			<tsl:TSLLegalNotice xml:lang="en">https://ants.gouv.fr/nos-missions/les-solutions-numeriques/2d-doc</tsl:TSLLegalNotice>
+			<tsl:TSLLegalNotice xml:lang="fr">https://ants.gouv.fr/nos-missions/les-solutions-numeriques/2d-doc</tsl:TSLLegalNotice>
+		</tsl:PolicyOrLegalNotice>
+		<tsl:HistoricalInformationPeriod>3653</tsl:HistoricalInformationPeriod>
+		<tsl:ListIssueDateTime>2023-11-27T15:30:00Z</tsl:ListIssueDateTime>
+		<tsl:NextUpdate>
+			<tsl:dateTime>2024-05-27T15:30:00Z</tsl:dateTime>
+		</tsl:NextUpdate>
+		<tsl:DistributionPoints>
+			<tsl:URI>https://ants.gouv.fr/nos-missions/les-solutions-numeriques/2d-doc</tsl:URI>
+		</tsl:DistributionPoints>
+	</tsl:SchemeInformation>
+	<tsl:TrustServiceProviderList>
+		<tsl:TrustServiceProvider>
+			<tsl:TSPInformation>
+				<tsl:TSPName>
+					<tsl:Name xml:lang="en">IDnow SAS</tsl:Name>
+					<tsl:Name xml:lang="fr">IDnow SAS</tsl:Name>
+				</tsl:TSPName>
+				<tsl:TSPTradeName>
+					<tsl:Name xml:lang="en">FR01</tsl:Name>
+					<tsl:Name xml:lang="fr">FR01</tsl:Name>
+				</tsl:TSPTradeName>
+				<tsl:TSPAddress>
+					<tsl:PostalAddresses>
+						<tsl:PostalAddress xml:lang="fr">
+							<tsl:StreetAddress>122, rue Robert Keller</tsl:StreetAddress>
+							<tsl:Locality>Cesson Sevigne</tsl:Locality>
+							<tsl:StateOrProvince>France</tsl:StateOrProvince>
+							<tsl:PostalCode>35510</tsl:PostalCode>
+							<tsl:CountryName>FR</tsl:CountryName>
+						</tsl:PostalAddress>
+						<tsl:PostalAddress xml:lang="en">
+							<tsl:StreetAddress>122, rue Robert Keller</tsl:StreetAddress>
+							<tsl:Locality>Cesson Sevigne</tsl:Locality>
+							<tsl:StateOrProvince>France</tsl:StateOrProvince>
+							<tsl:PostalCode>35510</tsl:PostalCode>
+							<tsl:CountryName>FR</tsl:CountryName>
+						</tsl:PostalAddress>
+					</tsl:PostalAddresses>
+					<tsl:ElectronicAddress>
+						<tsl:URI xml:lang="fr">mailto:contact@idnow.io</tsl:URI>
+					</tsl:ElectronicAddress>
+				</tsl:TSPAddress>
+				<tsl:TSPInformationURI>
+					<tsl:URI xml:lang="fr">http://cert.pki-2ddoc.ariadnext.fr/pki-2ddoc.der</tsl:URI>
+					<tsl:URI xml:lang="en">http://cert.pki-2ddoc.ariadnext.fr/pki-2ddoc.der</tsl:URI>
+				</tsl:TSPInformationURI>
+			</tsl:TSPInformation>
+			<tsl:TSPServices>
+				<tsl:TSPService>
+					<tsl:ServiceInformation>
+						<tsl:ServiceTypeIdentifier>http://uri.etsi.org/TrstSvc/Svctype/CA/PKC</tsl:ServiceTypeIdentifier>
+						<tsl:ServiceName>
+							<tsl:Name xml:lang="en">IDnow SAS FR01 2D-Doc Barcode signature</tsl:Name>
+							<tsl:Name xml:lang="fr">IDnow SAS FR01 2D-Doc Barcode signature</tsl:Name>
+						</tsl:ServiceName>
+						<tsl:ServiceDigitalIdentity>
+							<tsl:DigitalId>
+								<tsl:X509Certificate>
+									MIIFnzCCA4egAwIBAgIIWGqMmtUG62gwDQYJKoZIhvcNAQENBQAwTjENMAsGA1UEAwwERlIwMTEcMBoGA1UECwwTMDAwMiA1MjA3NjkyMjUwMDAyNzESMBAGA1UECgwJQXJpYWRORVhUMQswCQYDVQQGEwJGUjAeFw0xMjA2MjYxNTIyMzRaFw0yMjA2MjYxNTIyMzRaME4xDTALBgNVBAMMBEZSMDExHDAaBgNVBAsMEzAwMDIgNTIwNzY5MjI1MDAwMjcxEjAQBgNVBAoMCUFyaWFkTkVYVDELMAkGA1UEBhMCRlIwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQCqKLgVoE+hgLBeJ7t6kf2QFslItd6bkRolj3iZlvtVuYV//WOicYKuGWkjW/K2Zv2PySieo676qAsrEbchxwBMPpx12yCQoBckHxCB9mwiG+uyBiN3bukuPKlRxb7i+yNARt3hT+DDUuYqcwat2G4mP8MbHnCsbS2S1jikwWJeCPCa2vhNXSXVr2hNSFlQQEvfQzaaE4hDmwfrFqbyTMUAsTxSV3G6l513KWSY6ZAgMA9lB3KxMcpqvY7mHTClvAUMQYUKa4199NTJIvS6pNF0eLZ+JCAbMoQgMxAKS8VLRW6ovqgtdExD9fr664lAPAMpXFnb7mcLz9ovIhrOM33BZaJ+3zUwqMn5WYOxAPdbPqaf/ap2E3E07v5CeUgFpy4UdkHarUS6MYlbXY14dITwGpxBWyEB3LVpQE9GP1ZAKf4f+tBstS5m08G3xum6wMdpBVDJ3w8ao7KR+jUJcvzk4av4ZphI8Z5AyeTtLdAXFhffX8B12PmeLLPQmF2VK8zSC4MnkKAwU5D6leASDmgHIdN/mpRwWGEQSZqlKa3LQBXWIauNIHqlK777jgNe+EdifLcXIpoiQCVZCU3k+b9WAio0uWywdIZca8aHpKliGLgbOsyXUWIeskc6Gk/JopisdJwE3osGpU+CNU8Jipq4FMvnq4CL7y9FbEWXGDIEQwIDAQABo4GAMH4wHQYDVR0OBBYEFBGxw8fKDCm4PX28b3V6u3DuL9hJMBIGA1UdEwEB/wQIMAYBAf8CAQAwHwYDVR0jBBgwFoAUEbHDx8oMKbg9fbxvdXq7cO4v2EkwGAYDVR0gBBEwDzANBgsrBgEEAYKqUgoCAjAOBgNVHQ8BAf8EBAMCAUYwDQYJKoZIhvcNAQENBQADggIBAE+yUWliolk2HDG2/Iq2rOprnLqe50ixhvA2f5LB4vzcJSwZal9UxWe8TXgydSb693k+Uw+f+jpWj4j9UQmILNkfOzWNNQbm2GWCCTxsgzdAQRsvV7JesueL4JjnX59bqt45YPOcoKo184x5Bc0eb83drrQaJzRA18WKvpDLiHwUIs7rhX799CPG5BQoLRKQpE3hgGjSswPV6+xZ4HHh3+IUjohxZGZTN+r+mIqKIKBqJVHjy4C+x5X+yvmKpT0SUzaZ+rxcDEEyvLbvxFR2j3gtQx7ytmn3aCfY1pzdixmkqx473r6Kinz9NhoZ9RsnxpDOpnLaB2by0mVWPb6z56ki6GkziO2QbllXqW4UmTWymLAd8zt1nhGq/TUcQJBZIt1S1v9IgwGItfvKuMtFprwhba1YVErBKQU/Zb7WJrhzji3JZVWJZelEbp8iBTOZdAqicvVYTUsDql7G8lgQ4szNugeWryeEtSdG4ZGN7nfrrVsb0C0fNswutS7EeFy/ly4L7dDdA8Y/qKhjK1zbLKBimihbPEJqc4up8tF2tjMtJkqY2Oej4FyxS+TOXZjWJ9FWhnly4yxK0MYW82kw3HB5fsBPvEEnbSCZj70TCcvLRdoM48+r7wZvdZVGYxKQ0vr/T/sRICKboFzysRvhflOREXvnHZUL9UVeV8HqTOgo
+								</tsl:X509Certificate>
+							</tsl:DigitalId>
+						</tsl:ServiceDigitalIdentity>
+						<tsl:ServiceStatus>http://uri.etsi.org/TrstSvc/Svcstatus/inaccord</tsl:ServiceStatus>
+						<tsl:StatusStartingTime>2013-06-30T22:00:00Z</tsl:StatusStartingTime>
+					</tsl:ServiceInformation>
+				</tsl:TSPService>
+			</tsl:TSPServices>
+		</tsl:TrustServiceProvider>
+		<tsl:TrustServiceProvider>
+			<tsl:TSPInformation>
+				<tsl:TSPName>
+					<tsl:Name xml:lang="en">Dhimyotis</tsl:Name>
+					<tsl:Name xml:lang="fr">Dhimyotis</tsl:Name>
+				</tsl:TSPName>
+				<tsl:TSPTradeName>
+					<tsl:Name xml:lang="en">FR03</tsl:Name>
+					<tsl:Name xml:lang="fr">FR03</tsl:Name>
+				</tsl:TSPTradeName>
+				<tsl:TSPAddress>
+					<tsl:PostalAddresses>
+						<tsl:PostalAddress xml:lang="en">
+							<tsl:StreetAddress>20, allée de la Raperie</tsl:StreetAddress>
+							<tsl:Locality>Villeneuve d’Ascq</tsl:Locality>
+							<tsl:PostalCode>59650</tsl:PostalCode>
+							<tsl:CountryName>FR</tsl:CountryName>
+						</tsl:PostalAddress>
+						<tsl:PostalAddress xml:lang="fr">
+							<tsl:StreetAddress>20, allée de la Raperie</tsl:StreetAddress>
+							<tsl:Locality>Villeneuve d’Ascq</tsl:Locality>
+							<tsl:PostalCode>59650</tsl:PostalCode>
+							<tsl:CountryName>FR</tsl:CountryName>
+						</tsl:PostalAddress>
+					</tsl:PostalAddresses>
+					<tsl:ElectronicAddress>
+						<tsl:URI xml:lang="fr">mailto:contact@certigna.fr</tsl:URI>
+					</tsl:ElectronicAddress>
+				</tsl:TSPAddress>
+				<tsl:TSPInformationURI>
+					<tsl:URI xml:lang="en">http://certificates.certigna.fr/search.php?iHash=xvNLC1KMs03t%2FgxzdBYParPnf%2BM</tsl:URI>
+					<tsl:URI xml:lang="fr">http://certificates.certigna.fr/search.php?iHash=xvNLC1KMs03t%2FgxzdBYParPnf%2BM</tsl:URI>
+				</tsl:TSPInformationURI>
+			</tsl:TSPInformation>
+			<tsl:TSPServices>
+				<tsl:TSPService>
+					<tsl:ServiceInformation>
+						<tsl:ServiceTypeIdentifier>http://uri.etsi.org/TrstSvc/Svctype/CA/PKC</tsl:ServiceTypeIdentifier>
+						<tsl:ServiceName>
+							<tsl:Name xml:lang="en">DHIMYOTIS FR03 2D-Doc Barcode signature</tsl:Name>
+							<tsl:Name xml:lang="fr">DHIMYOTIS FR03 2D-Doc Barcode signature</tsl:Name>
+						</tsl:ServiceName>
+						<tsl:ServiceDigitalIdentity>
+							<tsl:DigitalId>
+								<tsl:X509Certificate>
+									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
+								</tsl:X509Certificate>
+							</tsl:DigitalId>
+						</tsl:ServiceDigitalIdentity>
+						<tsl:ServiceStatus>http://uri.etsi.org/TrstSvc/Svcstatus/inaccord</tsl:ServiceStatus>
+						<tsl:StatusStartingTime>2015-07-16T22:00:00Z</tsl:StatusStartingTime>
+					</tsl:ServiceInformation>
+				</tsl:TSPService>
+			</tsl:TSPServices>
+		</tsl:TrustServiceProvider>
+		<tsl:TrustServiceProvider>
+			<tsl:TSPInformation>
+				<tsl:TSPName>
+					<tsl:Name xml:lang="en">IDnow SAS</tsl:Name>
+					<tsl:Name xml:lang="fr">IDnow SAS</tsl:Name>
+				</tsl:TSPName>
+				<tsl:TSPTradeName>
+					<tsl:Name xml:lang="en">FR04</tsl:Name>
+					<tsl:Name xml:lang="fr">FR04</tsl:Name>
+				</tsl:TSPTradeName>
+				<tsl:TSPAddress>
+					<tsl:PostalAddresses>
+						<tsl:PostalAddress xml:lang="en">
+							<tsl:StreetAddress>122, rue Robert Keller</tsl:StreetAddress>
+							<tsl:Locality>Cesson Sevigne</tsl:Locality>
+							<tsl:StateOrProvince>France</tsl:StateOrProvince>
+							<tsl:PostalCode>35510</tsl:PostalCode>
+							<tsl:CountryName>FR</tsl:CountryName>
+						</tsl:PostalAddress>
+						<tsl:PostalAddress xml:lang="fr">
+							<tsl:StreetAddress>122, rue Robert Keller</tsl:StreetAddress>
+							<tsl:Locality>Cesson Sevigne</tsl:Locality>
+							<tsl:StateOrProvince>France</tsl:StateOrProvince>
+							<tsl:PostalCode>35510</tsl:PostalCode>
+							<tsl:CountryName>FR</tsl:CountryName>
+						</tsl:PostalAddress>
+					</tsl:PostalAddresses>
+					<tsl:ElectronicAddress>
+						<tsl:URI xml:lang="fr">mailto:contact@idnow.io</tsl:URI>
+					</tsl:ElectronicAddress>
+				</tsl:TSPAddress>
+				<tsl:TSPInformationURI>
+					<tsl:URI xml:lang="en">http://pki-g2.ariadnext.fr/pki-2ddoc.der</tsl:URI>
+					<tsl:URI xml:lang="fr">http://pki-g2.ariadnext.fr/pki-2ddoc.der</tsl:URI>
+				</tsl:TSPInformationURI>
+			</tsl:TSPInformation>
+			<tsl:TSPServices>
+				<tsl:TSPService>
+					<tsl:ServiceInformation>
+						<tsl:ServiceTypeIdentifier>http://uri.etsi.org/TrstSvc/Svctype/CA/PKC</tsl:ServiceTypeIdentifier>
+						<tsl:ServiceName>
+							<tsl:Name xml:lang="en">IDnow SAS FR04 2D-Doc Barcode signature</tsl:Name>
+							<tsl:Name xml:lang="fr">IDnow SAS FR04 2D-Doc Barcode signature</tsl:Name>
+						</tsl:ServiceName>
+						<tsl:ServiceDigitalIdentity>
+							<tsl:DigitalId>
+								<tsl:X509Certificate>
+									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
+								</tsl:X509Certificate>
+							</tsl:DigitalId>
+						</tsl:ServiceDigitalIdentity>
+						<tsl:ServiceStatus>http://uri.etsi.org/TrstSvc/Svcstatus/inaccord</tsl:ServiceStatus>
+						<tsl:StatusStartingTime>2015-12-31T23:00:00Z</tsl:StatusStartingTime>
+					</tsl:ServiceInformation>
+				</tsl:TSPService>
+			</tsl:TSPServices>
+		</tsl:TrustServiceProvider>
+		<tsl:TrustServiceProvider>
+			<tsl:TSPInformation>
+				<tsl:TSPName>
+					<tsl:Name xml:lang="en">ANTS</tsl:Name>
+					<tsl:Name xml:lang="fr">ANTS</tsl:Name>
+				</tsl:TSPName>
+				<tsl:TSPTradeName>
+					<tsl:Name xml:lang="en">FR05</tsl:Name>
+					<tsl:Name xml:lang="fr">FR05</tsl:Name>
+				</tsl:TSPTradeName>
+				<tsl:TSPAddress>
+					<tsl:PostalAddresses>
+						<tsl:PostalAddress xml:lang="en">
+							<tsl:StreetAddress>101 Rue TOLBIAC</tsl:StreetAddress>
+							<tsl:Locality>PARIS</tsl:Locality>
+							<tsl:StateOrProvince>France</tsl:StateOrProvince>
+							<tsl:PostalCode>75013</tsl:PostalCode>
+							<tsl:CountryName>FR</tsl:CountryName>
+						</tsl:PostalAddress>
+						<tsl:PostalAddress xml:lang="fr">
+							<tsl:StreetAddress>101 Rue TOLBIAC</tsl:StreetAddress>
+							<tsl:Locality>PARIS</tsl:Locality>
+							<tsl:StateOrProvince>France</tsl:StateOrProvince>
+							<tsl:PostalCode>75013</tsl:PostalCode>
+							<tsl:CountryName>FR</tsl:CountryName>
+						</tsl:PostalAddress>
+					</tsl:PostalAddresses>
+					<tsl:ElectronicAddress>
+						<tsl:URI xml:lang="fr">mailto:cev-ac-ants@interieur.gouv.fr</tsl:URI>
+					</tsl:ElectronicAddress>
+				</tsl:TSPAddress>
+				<tsl:TSPInformationURI>
+					<tsl:URI xml:lang="en">http://sp.ants.gouv.fr/cev/FR05_cert.der</tsl:URI>
+					<tsl:URI xml:lang="fr">http://sp.ants.gouv.fr/cev/FR05_cert.der</tsl:URI>
+				</tsl:TSPInformationURI>
+			</tsl:TSPInformation>
+			<tsl:TSPServices>
+				<tsl:TSPService>
+					<tsl:ServiceInformation>
+						<tsl:ServiceTypeIdentifier>http://uri.etsi.org/TrstSvc/Svctype/CA/PKC</tsl:ServiceTypeIdentifier>
+						<tsl:ServiceName>
+							<tsl:Name xml:lang="en">ANTS FR05 2D-DOC Barcode Signature</tsl:Name>
+							<tsl:Name xml:lang="fr">ANTS FR05 2D-DOC Barcode Signature</tsl:Name>
+						</tsl:ServiceName>
+						<tsl:ServiceDigitalIdentity>
+							<tsl:DigitalId>
+								<tsl:X509Certificate>
+									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
+								</tsl:X509Certificate>
+							</tsl:DigitalId>
+						</tsl:ServiceDigitalIdentity>
+						<tsl:ServiceStatus>http://uri.etsi.org/TrstSvc/Svcstatus/inaccord</tsl:ServiceStatus>
+						<tsl:StatusStartingTime>2021-03-15T23:00:00Z</tsl:StatusStartingTime>
+					</tsl:ServiceInformation>
+				</tsl:TSPService>
+			</tsl:TSPServices>
+		</tsl:TrustServiceProvider>
+	</tsl:TrustServiceProviderList>
+<ds:Signature Id="id-57b300e2b1be51cd7ea1c142a50b71a6"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><ds:Reference Id="r-id-57b300e2b1be51cd7ea1c142a50b71a6-1" URI=""><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2002/06/xmldsig-filter2"><dsig-filter2:XPath xmlns:dsig-filter2="http://www.w3.org/2002/06/xmldsig-filter2" Filter="subtract">/descendant::ds:Signature</dsig-filter2:XPath></ds:Transform><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>EKNYg5peoxPioWkPyltjwrlVtpw8z+YEDIR+53jz9iE=</ds:DigestValue></ds:Reference><ds:Reference Type="http://uri.etsi.org/01903#SignedProperties" URI="#xades-id-57b300e2b1be51cd7ea1c142a50b71a6"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>g4WedOZ657YqpyOe54Pqm8xZj5TAQmGqejmbjXn7SNk=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue Id="value-id-57b300e2b1be51cd7ea1c142a50b71a6">cpcuIMPTAuKVFnY2x5aNmbFv2kkAd0x04XCnJ1ZUUgSE7Flad3oT0swPEglgAUou414/6qfX6Bci2exrMk3h7yjKwu76ZGT76mC/eUuEkQxlErSoPpBKUrXu9Ve9EGPmOH1h1WY1/pztsPN/logOC8+q4PhePOtH6OKQ4G3N/kPg3e19d9qTbWNba6HX6GwFG0zdsQHPzgHLXvR80u0DFgzaDxIN9DC1l2ePglckeWqAUp0iI+QewgInRcTD5ppU6PRt6cA64rd+q/Q6W751kdHAKGyI/TN/O9v4K0ye+khJbtO96E1Rco6sv+N6Qn3VfI0gIVjuo41aNjjWNnNGJw==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIIFDjCCA/agAwIBAgISESGRWekDzdhQ2ccHMSGxUQS5MA0GCSqGSIb3DQEBCwUAMIGeMQswCQYDVQQGEwJGUjEwMC4GA1UECgwnQWdlbmNlIE5hdGlvbmFsZSBkZXMgVGl0cmVzIFPDqWN1cmlzw6lzMRcwFQYDVQQLDA4wMDAyIDEzMDAwMzI2MjE4MDYGA1UEAwwvQXV0b3JpdMOpIGRlIENlcnRpZmljYXRpb24gU2VydmljZXMgQXBwbGljYXRpZnMxCjAIBgNVBAUTATMwHhcNMjEwMzIzMTAwNTI3WhcNMjQwMzIzMTAwNTI3WjBzMQswCQYDVQQGEwJGUjEvMC0GA1UECgwmQWdlbmNlIE5hdGlvbmFsZSBkZXMgVGl0cmVzIFPDqWN1cmnDqXMxFzAVBgNVBAsMDjAwMDIgMTMwMDAzMjYyMRowGAYDVQQDDBFBTlRTIENBQ0hFVCAyRERPQzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAOyB45R5tIxXel5SX6q2Wk/BqfWqGW/tUMTpQng9yQ9FkofxV+r04k8C2h5UyDytREpySqGa+AvZe4x9DUBZiMHoEWtl1QHkHc2ttO0iH+zAtldJttMNykRSGzr2ftjVtoSDaR3hNBVBt8++mXM4speZg/Tj9+387XvRRiTnild3IQhwHtS1RmkHOZdYrYTQwZv71MLc4UAgSdRHn4rvNcCfEWXZLT9xYblpCd9fbp7Ouei+EPmTMtRlu4XvCCrYYL3zq91C1lHQO2yJ7hNGsYJe6OA0u3kuDBCBzRFosFtOW00IYvsEcJ4e28EIBEjcRAqntk2Ao808zgjdEFhRAbECAwEAAaOCAW4wggFqMAkGA1UdEwQCMAAwGAYDVR0gBBEwDzANBgsqgXoBgUgDAwkBATBOBgNVHR8ERzBFMEOgQaA/hj1odHRwOi8vY3JsLmFudHMuZ291di5mci9hbnRzYXYzL2FjX3NlcnZpY2VzX2FwcGxpY2F0aWZzXzMuY3JsMIGiBggrBgEFBQcBAQSBlTCBkjBGBggrBgEFBQcwAYY6aHR0cDovL29jc3AuYW50cy5nb3V2LmZyL2FudHNhdjMvYWNfc2VydmljZXNfYXBwbGljYXRpZnNfMzBIBggrBgEFBQcwAoY8aHR0cDovL3NwLmFudHMuZ291di5mci9hbnRzYXYzL2FjX3NlcnZpY2VzX2FwcGxpY2F0aWZzXzMuY2VyMA4GA1UdDwEB/wQEAwIHgDAdBgNVHQ4EFgQUsr0t5l3/gZHOUMEvB3vbSW47+xMwHwYDVR0jBBgwFoAUtcjpgaY+lJ9Iz3CL/NmWEvH+CIcwDQYJKoZIhvcNAQELBQADggEBAFO7mgGgnPU266NaqmrHtkay6o6rcNfQ1bXIA2D4zyL2ovJVAYghcRDL/MdgqRThTRc3N9Vuq3O/sXf3AC3Ixvp5ODhYo9mQ+EoLtGcwE/G9uKOncQzatXP3Y5D+pyUTaSA14wkpoqQr96kGQkWHCWyzXKjEHjyyZfBYZj1fNMd9gJ9Ap9nKoxH2k+zBZr1laIWeUoYw8KpSbM8RoM/BZ7Ve364bsnfCewzO3i6BKpMJVfJLbo1m2qXSgTKtYEAZsBf3sF2EhGXt69vTB4b2qLgy7wxJkNxzXv8nXVIzCKGjsY1g2Z5pnRoM/3+02LV97Iq0jRFT5iP9WRQp6At8dqE=</ds:X509Certificate></ds:X509Data></ds:KeyInfo><ds:Object><xades:QualifyingProperties Target="#id-57b300e2b1be51cd7ea1c142a50b71a6"><xades:SignedProperties Id="xades-id-57b300e2b1be51cd7ea1c142a50b71a6"><xades:SignedSignatureProperties><xades:SigningTime>2023-11-27T14:25:22Z</xades:SigningTime><xades:SigningCertificateV2><xades:Cert><xades:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><ds:DigestValue>FfGoEUzk9kHYntyK4aWBpZ2apRk2LKDIbr+k2y6Pqx3kZejxrHTr0M/KhyBBio7zjgDxmZy2PsaTeo3iz5L1Ng==</ds:DigestValue></xades:CertDigest><xades:IssuerSerialV2>MIG7MIGkpIGhMIGeMQswCQYDVQQGEwJGUjEwMC4GA1UECgwnQWdlbmNlIE5hdGlvbmFsZSBkZXMgVGl0cmVzIFPDqWN1cmlzw6lzMRcwFQYDVQQLDA4wMDAyIDEzMDAwMzI2MjE4MDYGA1UEAwwvQXV0b3JpdMOpIGRlIENlcnRpZmljYXRpb24gU2VydmljZXMgQXBwbGljYXRpZnMxCjAIBgNVBAUTATMCEhEhkVnpA83YUNnHBzEhsVEEuQ==</xades:IssuerSerialV2></xades:Cert></xades:SigningCertificateV2></xades:SignedSignatureProperties><xades:SignedDataObjectProperties><xades:DataObjectFormat ObjectReference="#r-id-57b300e2b1be51cd7ea1c142a50b71a6-1"><xades:MimeType>text/xml</xades:MimeType></xades:DataObjectFormat></xades:SignedDataObjectProperties></xades:SignedProperties></xades:QualifyingProperties></ds:Object></ds:Signature></tsl:TrustServiceStatusList>
