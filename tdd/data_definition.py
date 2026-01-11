@@ -57,6 +57,9 @@ class StringAZ(String):
 class StringAZ09(String):
     allowed_format = re.compile(r'[A-Z0-9]*')
 
+class EORI(String):
+    allowed_format = re.compile(r'[A-Z]{2}[0-9]+')
+    
 class StringAZSp(String):
     allowed_format = re.compile(r'[A-Z ]*')
 
@@ -638,7 +641,7 @@ c40 = Definitions(
                     Definition("DE", "Raison sociale de l’expéditeur", 0, 50, StringAZ09Sp),
                     Definition("DF", "SIREN de l’expéditeur", 9, 9, Numeric0),
                     Definition("DG", "SIRET de l’expéditeur", 14, 14, Numeric0),
-                    Definition("DH", "EORI de l’expéditeur", 0, 20, StringAZ09),
+                    Definition("DH", "EORI de l’expéditeur", 0, 20, EORI),
                     Definition("DI", "TIN de l’expéditeur", 4, 30, StringAZ09),
                     Definition("DJ", "Nom de l’exportateur", 0, 50, StringAZSp),
                     Definition("DK", "Prénom de l’exportateur", 0, 50, StringAZSp),
@@ -646,14 +649,14 @@ c40 = Definitions(
                     Definition("DM", "Raison sociale de l’exportateur", 0, 50, StringAZ09Sp),
                     Definition("DN", "SIREN de l’exportateur", 9, 9, Numeric0),
                     Definition("DO", "SIRET de l’exportateur", 14, 14, Numeric0),
-                    Definition("DP", "EORI de l’exportateur", 0, 20, StringAZ09),
+                    Definition("DP", "EORI de l’exportateur", 0, 20, EORI),
                     Definition("DQ", "Nom du destinataire", 0, 50, StringAZSp),
                     Definition("DR", "Prénom du destinataire", 0, 50, StringAZSp),
                     Definition("DS", "Date de naissance du destinataire", 8, 8, JJMMAAAA),
                     Definition("DT", "Raison sociale du destinataire", 0, 50, StringAZ09Sp),
                     Definition("DU", "SIREN du destinataire", 9, 9, Numeric0),
                     Definition("DV", "SIRET du destinataire", 14, 14, Numeric0),
-                    Definition("DW", "EORI du destinataire", 0, 50, StringAZ09),
+                    Definition("DW", "EORI du destinataire", 0, 50, EORI),
                     Definition("DX", "TIN du destinataire", 4, 30, StringAZ09),
                     Definition("DY", "Nombre de lignes articles", 3, 3, Numeric0),
                     Definition("DZ", "Numéro du bon de livraison", 0, 10, StringAZ09),
