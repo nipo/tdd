@@ -177,15 +177,16 @@ def internal():
     """
     Spawn a keychain with all built-in certificated loaded.
     """
-    import pkg_resources
+    from importlib.resources import files
 
     k = KeyChain()
+    chains = files('tdd.chains')
     for chain in ["FR01", "FR02", "FR03", "FR04"]:
-        chain_name = "chains/" + chain + ".der"
-        fd = pkg_resources.resource_stream(__name__, chain_name)
-        k.der_multipart_load(fd)
-    fd = pkg_resources.resource_stream(__name__, "chains/FR00.der")
-    k.der_add(fd.read())
+        chain_file = chains.joinpath(chain + ".der")
+        with chain_file.open('rb') as fd:
+            k.der_multipart_load(fd)
+    with chains.joinpath("FR00.der").open('rb') as fd:
+        k.der_add(fd.read())
     return k
 
 if __name__ == "__main__":
