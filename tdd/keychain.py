@@ -181,13 +181,11 @@ def internal():
 
     k = KeyChain()
     chains = files('tdd.chains')
-    for chain in ["FR01", "FR02", "FR03", "FR04"]:
+    for chain in ["FR01", "FR02", "FR03", "FR04", "FR05"]:
         chain_file = chains.joinpath(chain + ".der")
         with chain_file.open('rb') as fd:
             k.der_multipart_load(fd)
     with chains.joinpath("FR00.der").open('rb') as fd:
-        k.der_add(fd.read())
-    with chains.joinpath("FR05.der").open('rb') as fd:
         k.der_add(fd.read())
     return k
 
