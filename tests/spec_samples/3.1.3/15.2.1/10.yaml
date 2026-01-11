@@ -1,0 +1,25 @@
+# Autorisation d'importation de matériels de guerre - Format V4
+header:
+  version: 4
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2012-11-02"
+  sign_date: "2012-11-02"
+  doc_type_id: "C4"
+  perimeter_id: 1
+  country_id: "FR"
+
+fields:
+  "D6": "87654321"
+  "D7": "2020-12-04"
+  "D8": "05"
+  "DE": "MASOCIETE SAS"
+  "DH": "FR123456789012345"
+  "DI": "Z12345678901234567890123"
+  "DT": "IMPORT LTD"
+  "DU": "123456789"
+  "DV": "12345678900001"
+  "DW": "FR345678901234567"
+  "DY": "032"
+
+signature: "86c7be181084f60a57b7b6ac6a656e858b1f5d9434515b8f93a590cf238f599e755d4a7cddd3a28d4e94d84d8f39b05a5c157ef46ed4a0cbb8ecb72b5bfe029c"

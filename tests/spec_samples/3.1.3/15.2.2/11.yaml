@@ -1,0 +1,19 @@
+# Relevé de compte - Format V3
+header:
+  version: 3
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2012-09-01"
+  sign_date: "2015-07-27"
+  doc_type_id: "11"
+  perimeter_id: 1
+
+fields:
+  "30": "M EXEMPLE HENRY ET MME SPECIMEN NATACHA"
+  "31": "FR7030002005500000157845Z02"
+  "32": "CRLYFRPP"
+  "36": "2012-09-01"
+  "37": "2012-09-30"
+  "38": "-234,78"
+
+signature: "d7e4181e3658ec591e0e20453aa32cc8cebe50bce2b51fc4b218806821c00eb9b5bc58f79d1b8dbf158ec957d85249d65dbda989793a443974cbd1d382da4ee4"

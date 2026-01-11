@@ -1,0 +1,18 @@
+# Permis de chasser - Format V4
+header:
+  version: 4
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2020-10-14"
+  sign_date: "2021-03-15"
+  doc_type_id: "A9"
+  perimeter_id: 1
+  country_id: "FR"
+
+fields:
+  "80": "SPECIMEN"
+  "81": "NATACHA/CORINNE"
+  "69": "1977-10-05"
+  "85": "202005912345-11-A"
+
+signature: "785203354330d4a361913db2373e782c3e3d8409f6ea3d95107cdbf1dfa787de81261ad4982d36f6ac99a83da59dc6e9a750393de97caf64d3168f9b487c67e2"

@@ -1,0 +1,17 @@
+# Carte Professionnelle Sapeur-Pompier - Format V3
+header:
+  version: 3
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: null
+  sign_date: "2017-07-24"
+  doc_type_id: "A6"
+  perimeter_id: 1
+
+fields:
+  "80": "SPECIMEN"
+  "81": "NATACHA/CORINNE"
+  "82": "1234567890"
+  "83": "SDIS SPECIMEN"
+
+signature: "0b2333a4b3a1a05a7b4f32f2c282e092d2b035d9f7122566ceba5a42189f063d3b4ba2586861973fb87362f73fd593a6c85b8fc2a96df2cf7f17d7e9be0b0631"

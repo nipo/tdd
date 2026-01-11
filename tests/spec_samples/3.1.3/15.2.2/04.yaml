@@ -1,0 +1,16 @@
+# Relevé d'identité bancaire - Format V3
+header:
+  version: 3
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: null
+  sign_date: "2015-07-27"
+  doc_type_id: "03"
+  perimeter_id: 1
+
+fields:
+  "30": "M EXEMPLE HENRY ET MME SPECIMEN NATACHA"
+  "31": "FR7030002005500000157845Z02"
+  "32": "CRLYFRPP"
+
+signature: "241d25d0b5f6bd26715f7cdaedbc73fa19fdf8cbbdc2902d5c60a564b37045a1f04a42af6ad7cba71ea197d66227fd6ed8dd614a54e6d6720635b6b3d26fb3ad"

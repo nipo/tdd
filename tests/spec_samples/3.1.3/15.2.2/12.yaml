@@ -1,0 +1,27 @@
+# Certificat de qualité de l'air - Format V3
+header:
+  version: 3
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2015-09-01"
+  sign_date: "2015-08-19"
+  doc_type_id: "A0"
+  perimeter_id: 1
+
+fields:
+  "A0": "FR"
+  "A1": "BH-999-VX"
+  "A2": "RENAULT"
+  "A3": "MEGANE SCENIC"
+  "A4": "1M8GDM9AXKP042788"
+  "A5": "M1 "
+  "A6": "GO"
+# Discrepancy accross tests, sometime they parse hex, sometimes not
+# Do it here.
+#  "A7": "082"
+  "A7": "130"
+  "A8": "2008EURO5"
+  "A9": "050"
+  "AA": "1999-01-01"
+
+signature: "6f77805a201d73d3e55f36c6136b734e5cda61665eb7789ea79e930b83c62574508dcaf2aa9fffd1890d21eeca26fccbe98fe83a05677f32228e37450749e851"

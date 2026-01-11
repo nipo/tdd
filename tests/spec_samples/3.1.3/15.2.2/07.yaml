@@ -1,0 +1,22 @@
+# Bulletin de salaire - Format V3
+header:
+  version: 3
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2012-11-02"
+  sign_date: "2015-07-27"
+  doc_type_id: "06"
+  perimeter_id: 1
+
+fields:
+  "10": "M/EXEMPLE/HENRY"
+  "50": "00000000000000"
+  "51": "157,5"
+  "52": "934,5"
+  "53": "2012-10-01"
+  "54": "2012-10-31"
+  "55": "2012-03-15"
+  "58": "1319,24"
+  "59": "9894,3"
+
+signature: "28938931c3fa879737b030555df7b215f4c195c5a7f9ba070ad176f8f87f22fd68d2888d3b282b00c79ce775b37a0764de42af2ffadc343ca87d1eaac74d5ba1"

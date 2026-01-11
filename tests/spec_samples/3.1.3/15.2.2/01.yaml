@@ -1,0 +1,22 @@
+# Justificatif de domicile - Format V3
+header:
+  version: 3
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2012-10-15"
+  sign_date: "2015-07-27"
+  doc_type_id: "00"
+  perimeter_id: 1
+  country_id: "FR"
+
+fields:
+  "10": "MLLE/SAMPLE/ANGELA"
+  "20": ""
+  "21": "BAT 2 ETG 3"
+  "22": "7 PLACE DES SPECIMENS"
+  "23": ""
+  "24": "57000"
+  "25": "METZ"
+  "26": "FR"
+
+signature: "d9d28c3f6e0278b465b0b8a796360f9cfa2d5d02990bca193b68c9a1599f3a5c422b801231c165ceee5c536fa078f2ccc0a4010368e676e082f36fa9268a9e13"

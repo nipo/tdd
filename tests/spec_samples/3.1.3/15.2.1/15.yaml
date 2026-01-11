@@ -1,0 +1,30 @@
+# Attestation de décision favorable (CTT) - Format V4
+header:
+  version: 4
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2020-12-04"
+  sign_date: "2020-12-21"
+  doc_type_id: "15"
+  perimeter_id: 1
+  country_id: "FR"
+
+fields:
+  "6L": "2020-11-30"
+  "5N": "123456789101112131415"
+  "5Q": "BERTHIER"
+  "5R": "CORINNE"
+  "5S": "DIRECTRICE RESSOURCES HUMAINES"
+  "62": "SPECIMEN"
+  "61": "NATACHA"
+  "69": "1973-11-05"
+  "6A": "TOULON"
+  "67": "BR"
+  "5T": "2"
+  "55": "2020-12-17"
+  "5O": "MUSTERMANN"
+  "5P": "ERIKA"
+  "5U": "175 JOURS"
+  "6Z": "123456ABC"
+
+signature: "9a204456b935f3284e3a565946e59e13f51d0db617a0db20d3c739717fcdb8848b60dbca4fde6309f86465b057710c9a82c249f1c49a749b2294549b922a3ac7"

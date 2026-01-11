@@ -1,0 +1,20 @@
+# Titre d'identité - Format V3
+header:
+  version: 3
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2006-06-07"
+  sign_date: "2015-07-27"
+  doc_type_id: "07"
+  perimeter_id: 1
+
+fields:
+  "60": "NATACHA"
+  "62": "SPECIMEN"
+  "65": "P "
+  "66": "07CD12304"
+  "67": "FR"
+  "68": "F"
+  "6C": "FR"
+
+signature: "26169be0fd8ecf8777169b08b57dfaffd4a72bb39b43af4bd403c67d29269eff8bb464cccc456977dba51682ee7f2872d8ed9ba9e5cdd20b2fa20450dfa99e14"

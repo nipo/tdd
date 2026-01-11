@@ -1,0 +1,26 @@
+# Accord préalable pour le transfert d'armes - Format V4
+header:
+  version: 4
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2012-11-02"
+  sign_date: "2012-11-02"
+  doc_type_id: "C2"
+  perimeter_id: 1
+  country_id: "FR"
+
+fields:
+  "D6": "12345678"
+  "D7": "2020-12-04"
+  "D8": "03"
+  "DB": "MORIN"
+  "DC": "JEAN"
+  "DD": "1985-12-25"
+  "DT": "IMPORT LTD"
+  "DU": "123456789"
+  "DV": "12345678900001"
+  "DW": "FR345678901234567"
+  "DY": "009"
+
+signature: "0c8155fa0e18d9ae90fd067b0ffcbfed18d76c8bac6b64a56ec97cc68ddbf3a26297a82eb2f3671c02f92c2f30cbaa
+da3335529f1bde73c30f7f1f3a80bab916"

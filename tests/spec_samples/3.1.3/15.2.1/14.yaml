@@ -1,0 +1,29 @@
+# Attestation de décision favorable (CDI) - Format V4
+header:
+  version: 4
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2020-12-04"
+  sign_date: "2020-12-21"
+  doc_type_id: "15"
+  perimeter_id: 1
+  country_id: "FR"
+
+fields:
+  "6L": "2020-11-30"
+  "5N": "123456789101112131415"
+  "5Q": "BERTHIER"
+  "5R": "CORINNE"
+  "5S": "DIRECTRICE RESSOURCES HUMAINES"
+  "62": "SPECIMEN"
+  "61": "NATACHA"
+  "69": "1973-11-05"
+  "6A": "TOULON"
+  "67": "BR"
+  "5T": "1"
+  "55": "2020-12-17"
+  "50": "13001759300034"
+  "5M": "SPECIMEN COMPANY SA"
+  "66": "07CD12304"
+
+signature: "58a9f660791a42e1ba73e249b8297be8e6cc6a7dc65a19b6a8187852058cefe4923f2362dc402826c85d4ec5b9a8d86d8b9469c08f3e76351bbc77156ffbfe3d"

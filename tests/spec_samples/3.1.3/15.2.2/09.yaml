@@ -1,0 +1,16 @@
+# MRZ - Format V3
+header:
+  version: 3
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2006-06-07"
+  sign_date: "2015-07-27"
+  doc_type_id: "08"
+  perimeter_id: 1
+
+fields:
+#  In spec, this is actually escaped with '<' for counting spaces
+#  "6F": "P<FRASPECIMEN<<NATACHA<<<<<<<<<<<<<<<<<<<<<<07CD123044FRA7307122F1603062<<<<<<<<<<<<<<04"
+  "6F": "P FRASPECIMEN  NATACHA                      07CD123044FRA7307122F1603062              04"
+
+signature: "9e2e3e98f75021dd3441e2326ba4b846277fd23d920df1bc6974b6a75bdf248c4116e59e4a4db1daf6e5867d58d1a6d74799ec62e9fee313853b6d1f7448e6a3"

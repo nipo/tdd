@@ -1,0 +1,24 @@
+# Courrier Permis à points - Format V3
+header:
+  version: 3
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2016-04-27"
+  sign_date: "2016-05-26"
+  doc_type_id: "A1"
+  perimeter_id: 1
+
+fields:
+  "AB": "48M"
+  "AC": "156985632"
+  "6H": "MME"
+  "6G": "SPECIMEN"
+  "60": "NATACHA"
+  "69": "1973-11-25"
+  "6A": "TOULON"
+  "AD": "2016-01-01"
+  "AE": "0132"
+  "AF": "4"
+  "AG": "8"
+
+signature: "e931259b8d553a42ba2621cc69285188f6980cab44316c403b4f1272752630744eac29536c6730f211728fbb3e12e25de4e2787fbca47a3065fe99c2c6711429"

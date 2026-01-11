@@ -1,0 +1,16 @@
+# Avis d'impôt sur le revenu - Format V3
+header:
+  version: 3
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2012-10-18"
+  sign_date: "2015-07-27"
+  doc_type_id: "04"
+  perimeter_id: 1
+
+fields:
+  "10": "M/IMPOSABLE/FRANCOIS"
+  "40": "1234567890123"
+  "41": "1042876"
+
+signature: "0074c97b9b6c1b8fdfa1648e2b7ca9e8e1a589d5cf9cfade8eeb413838218289feec682c1d5ff6d96dc36d50875eb70dc1d733ae9899d256fb25ac4cd84c992f"

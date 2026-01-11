@@ -1,0 +1,17 @@
+# Contrat de travail - Format V2
+header:
+  version: 2
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2012-03-15"
+  sign_date: "2013-10-16"
+  doc_type_id: "10"
+
+fields:
+  "50": "00000000000000"
+  "57": "2012-03-15"
+  "5A": "1517,42"
+  "61": "HENRY"
+  "62": "EXEMPLE"
+
+signature: "601464d8a8bdb130b8771148584d889dc14d9a35f0358a24565d3880facfa991bbf1322ad688a8f96406765c9789056dffff4ac1d6f973388ab8c1d695796b66"

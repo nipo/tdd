@@ -1,0 +1,20 @@
+# Attestation de Versement de la Contribution à la Vie Etudiante - Format V4
+header:
+  version: 4
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2018-06-25"
+  sign_date: "2018-06-25"
+  doc_type_id: "B1"
+  perimeter_id: 1
+  country_id: "FR"
+
+fields:
+  "BK": "18-ROSWFTHR-35"
+  "B0": "CORINNE/NATACHA"
+  "B2": "BERTHIER"
+  "B3": ""
+  "B7": "1973-07-12"
+  "BB": "9654321785T"
+
+signature: "cdcfa084624484fb5ffac20b2601aef7b4ed225e7bde845186abb641118bfc69e8209d12b2ad83b7f48b3d9c2f4097427a2a5e01c67c1375e46d1d05e889bed0"

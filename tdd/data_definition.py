@@ -24,6 +24,9 @@ class Format:
             raise ValueError("Too long")
         return text
 
+    def from_spec_test_data(self, text):
+        return self.parse(text)
+    
 class String(Format):
     allowed_format = re.compile(r'.*')
     pad_post = None
@@ -112,6 +115,9 @@ class Date4(Format):
 
     def serialize(self, d):
         return f'{(d - self.EPOCH).days:04X}'
+
+    def from_spec_test_data(self, text):
+        return date.fromisoformat(text)
     
 class Boolean(Format):
     def parse(self, text):
@@ -130,6 +136,9 @@ class JJMMAAAA(Format):
     def serialize(self, d):
         return f'{d.day:02d}{d.month:02d}{d.year:04d}'
 
+    def from_spec_test_data(self, text):
+        return date.fromisoformat(text)
+
 class JJMMAAAAHHMM(Format):
     def parse(self, text):
         j = int(text[:2], 10)
@@ -142,6 +151,9 @@ class JJMMAAAAHHMM(Format):
     def serialize(self, d):
         return f'{d.day:02d}{d.month:02d}{d.year:04d}{d.hour:02d}{d.minute:02d}'
 
+    def from_spec_test_data(self, text):
+        return datetime.fromisoformat(text)
+
 class HexInt(Format):
     def parse(self, text):
         v = int(text, 16)
@@ -153,6 +165,9 @@ class HexInt(Format):
         else:
             fmt = "%X"
         return fmt % v
+
+    def from_spec_test_data(self, text):
+        return int(text)
 
 class Time6(Format):
     def parse(self, text):
@@ -182,6 +197,9 @@ class StringBase32(Format):
     def serialize(self, text):
         from base64 import b32encode
         return b32encode(text)
+
+    def from_spec_test_data(self, text):
+        return text.encode('ascii', 'ignore')
 
 class Base36(Format):
     def parse(self, text):

@@ -1,0 +1,18 @@
+# Avis de taxe d'habitation - Format V2
+header:
+  version: 2
+  ca_id: "FR00"
+  cert_id: "0001"
+  emit_date: "2012-11-15"
+  sign_date: "2012-11-11"
+  doc_type_id: "02"
+  country_id: "FR"
+
+fields:
+  "10": "M/ECHANTILLON/ARTHUR"
+  "22": "42 SQUARE DES ECHANTILLONS"
+  "24": "44000"
+  "25": "NANTES"
+  "26": "FR"
+
+signature: "a1b17b46a9c779050bbe9609fbf363a700d76a4f3cf0a33e91a3bae1f391957c3072242d193685a240bae61f3be3f9270de80047cc04fbdcfb09d8b7265a3c42"
