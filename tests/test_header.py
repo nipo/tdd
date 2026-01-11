@@ -1,4 +1,4 @@
-from ..header import Header, date_parse_text, date_encode
+from tdd.header import Header, date_parse_text, date_encode
 from datetime import date
 
 def test_date():

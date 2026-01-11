@@ -1,4 +1,4 @@
-from ..c40 import c40, text
+from tdd.c40 import c40, text
 
 def test_c40_parse():
     assert c40.parse(b'\x57\xd3') == 'Ab'
