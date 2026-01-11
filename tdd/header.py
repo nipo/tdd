@@ -115,7 +115,7 @@ class Header:
     def to_code(self):
         "Serialize code"
         if self.mode == "c40":
-            return f"DC{self.version:02d}{self.ca_id}{self.cert_id}{date_encode(self.emit_date)}{date_encode(self.sign_date)}{self.doc_type_id}{self.perimeter_id if self.version >= 3 else ''}{self.country_id if self.version >= 4 else ''}"
+            return f"DC{self.version:02d}{self.ca_id}{self.cert_id}{date_encode(self.emit_date)}{date_encode(self.sign_date)}{self.doc_type_id}{format(self.perimeter_id, '02d') if self.version >= 3 else ''}{self.country_id if self.version >= 4 else ''}"
         elif self.mode == "bin":
             return b'\xdc\x04' \
                 + c40.format(self.country_id) \
