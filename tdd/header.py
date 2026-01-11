@@ -6,17 +6,14 @@ __all__ = ["Header"]
 
 EPOCH = date(2000, 1, 1)
 
-def date_parse(code):
-    if isinstance(code, bytes) and len(code) == 3:
-        v = int.from_bytes(code, "big")
-        return date(year = v % 10000,
-                    month = v // 1000000,
-                    day = (v // 10000) % 100)
-    if isinstance(code, str):
-        code = int(code, 16)
-    if not isinstance(code, int):
-        raise ValueError(f"Unparsable type {type(code)}")
-    return EPOCH + timedelta(days = code)
+def date_parse_text(code):
+    return EPOCH + timedelta(days = int(code, 16))
+
+def date_parse_bin(code):
+    v = int.from_bytes(code, "big")
+    return date(year = v % 10000,
+                month = v // 1000000,
+                day = (v // 10000) % 100)
 
 def date_encode(d, mode = "c40"):
     if mode == "c40":
@@ -54,8 +51,8 @@ class Header:
 
             ca_id = code[4:8]
             cert_id = code[8:12]
-            emit_date = date_parse(code[12:16])
-            sign_date = date_parse(code[16:20])
+            emit_date = date_parse_text(code[12:16])
+            sign_date = date_parse_text(code[16:20])
             doc_type_id = code[20:22]
             perimeter_id = int(code[22:24]) if version >= 3 else 1
             country_id = code[24:26] if version >= 4 else "FR"
@@ -68,8 +65,8 @@ class Header:
             ca_cert = c40.parse(code[4:10])
             ca_id = ca_cert[:4]
             cert_id = ca_cert[4:]
-            emit_date = date_parse(code[10:13])
-            sign_date = date_parse(code[13:16])
+            emit_date = date_parse_bin(code[10:13])
+            sign_date = date_parse_bin(code[13:16])
             doc_type_id = code[16]
             perimeter_id = int.from_bytes(code[17:19], "big")
 

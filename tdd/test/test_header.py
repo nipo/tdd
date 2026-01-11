@@ -1,8 +1,8 @@
-from ..header import Header, date_parse, date_encode
+from ..header import Header, date_parse_text, date_encode
 from datetime import date
 
 def test_date():
-    assert date_parse("111E") == date(2011, 12, 31)
+    assert date_parse_text("111E") == date(2011, 12, 31)
     assert "111E" == date_encode(date(2011, 12, 31))
 
 def test_header02():
