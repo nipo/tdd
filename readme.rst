@@ -17,8 +17,8 @@ line with:
 
 .. code:: shell
 
-  $ python3 -m tdd.dump samples/spec/3.1.3/15.2.2/17.txt
-  samples/spec/3.1.3/15.2.2/17.txt:
+  $ python3 -m tdd.dump tests/spec_samples/3.1.3/15.2.2/17.txt
+  tests/spec_samples/3.1.3/15.2.2/17.txt:
   Version: 3
   Country: FR
   CA: FR00
@@ -41,7 +41,7 @@ A basic parsing sessions boils down to:
 .. code:: python
 
   >>> from tdd.doc import TwoDDoc
-  >>> c = TwoDDoc.from_code(open('samples/spec/3.1.3/15.2.2/17.txt', 'r').read().strip())
+  >>> c = TwoDDoc.from_code(open('tests/spec_samples/3.1.3/15.2.2/17.txt', 'r').read().strip())
   >>> c.header.doc_type().user_type
   "Justificatif d'activité"
   >>> c.header.doc_type().emitter_type
