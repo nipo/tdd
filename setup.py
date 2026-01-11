@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = "tdd -- TwoD Doc",
+    name = "tdd",
     version = "0.1",
     description = "2D-Doc toolsuite",
     author = "Nicolas Pouillon",
@@ -12,21 +12,20 @@ setup(
         "Programming Language :: Python",
     ],
     package_data = {
-        '': ['*.der'],
+        'tdd': ['chains/*.der'],
     },
-    entry_points={
-        'console_scripts': [
-#            'crobe = crobe.cli.console:cli',
-        ],
-        'setuptools.installation': [
-#            'eggsecutable = crobe.cli.console:cli',
-        ]
-    },
+    include_package_data = True,
     use_2to3 = False,
     packages = find_packages(),
-    install_requires = [],
+    install_requires = [
+        "pycryptodome",
+    ],
     dependency_links=[
     ],
     extras_require={
+        'dev': [
+            'pytest',
+            'pyyaml',
+        ]
     },
 )
