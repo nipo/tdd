@@ -102,7 +102,7 @@ QualName = StringAZ09SpSl
 Iso3166_2 = String
 
 class Decimal(String):
-    allowed_format = re.compile(r'[0-9.-]*')
+    allowed_format = re.compile(r'[0-9,-]*')
     pad_pre = '0'
 
 class PhoneNumber(String):
