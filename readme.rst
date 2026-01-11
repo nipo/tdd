@@ -79,10 +79,6 @@ TODO
   * Automatic chain lookup and updates (for now, this is lazy and
     there is a copy of public keychains in package).
 
-* Investigate why datatype "DP (EORI de l’exportateur)" does not parse
-  correctly in spec samples. It seems samples are missing a <GS> after
-  this field, or definition max size is broken in the spec.
-
 License
 =======
 
