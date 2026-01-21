@@ -76,8 +76,9 @@ TODO
 
   * Full certificate chain verification
 
-  * Automatic chain lookup and updates (for now, this is lazy and
-    there is a copy of public keychains in package).
+  * Verify revocation lists
+
+  * Verify certificate validity time
 
 License
 =======

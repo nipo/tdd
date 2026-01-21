@@ -12,13 +12,15 @@ setup(
         "Programming Language :: Python",
     ],
     package_data = {
-        'tdd': ['chains/*.der'],
+        'tdd': ['chains/*.der', 'chains/tsl_signed.xml'],
     },
     include_package_data = True,
     use_2to3 = False,
     packages = find_packages(),
     install_requires = [
-        "pycryptodome",
+        "cryptography",
+        "lxml",
+        "requests"
     ],
     dependency_links=[
     ],
