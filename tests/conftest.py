@@ -2,9 +2,10 @@
 Pytest fixtures for 2D-Doc specification tests.
 """
 import pytest
-from pathlib import Path
-import yaml
 
+from cryptography import x509
+from importlib.resources import files
+from pathlib import Path
 
 def discover_test_cases(samples_dir: Path):
     """
@@ -36,5 +37,8 @@ def keychain():
     """
     Load the internal keychain with bundled certificates.
     """
-    from tdd.keychain import internal
-    return internal()
+    from tdd.keychain import KeyChain
+    test_chains = files('tdd.chains').joinpath('FR000001.der')
+    with test_chains.open("rb") as fd:
+        test_cert = x509.load_der_x509_certificate(fd.read())
+    return KeyChain(certs = {"FR000001": test_cert})

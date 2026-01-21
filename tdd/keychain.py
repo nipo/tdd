@@ -1,157 +1,60 @@
-from Crypto.Util import asn1
+from base64 import b64decode
+from cryptography import x509
+from cryptography.hazmat.primitives import serialization
+from cryptography.x509.oid import NameOID
+from importlib.resources import files
+from lxml import etree
+import requests
 
 __doc__ = "Keychain management"
-
-der_obj = lambda x: asn1.DerObject().decode(x).payload
-der_seq = lambda x: asn1.DerSequence().decode(x)
-der_set = lambda x: asn1.DerSetOf().decode(x)
-der_oid = lambda x: asn1.DerObjectId().decode(x).value
-der_int = lambda x: asn1.DerInteger().decode(x)
-#der_str = lambda x: asn1.DerOctetString().decode(x)
-der_str = lambda x: str(asn1.DerObject().decode(x).payload, "utf-8")
-der_bits = lambda x: asn1.DerBitString().decode(x).value
-
-class PublicKey:
-    """
-    A public key store. Only NIST P-256 is supported for now.
-    """
-    id_prime256v1 = "1.2.840.10045.3.1.7"
-    id_ecPublicKey = "1.2.840.10045.2.1"
-
-    def __init__(self, type, value):
-        self.type = type
-        self.key = value
-
-    @classmethod
-    def from_der(cls, data):
-        from Crypto.PublicKey import ECC
-
-        type, key = der_seq(data)
-        pub_priv, algo = der_seq(type)
-        pub_priv = der_oid(pub_priv)
-        try:
-            algo = der_oid(algo)
-        except ValueError:
-            algo = der_seq(algo)
-
-        if pub_priv != cls.id_ecPublicKey:
-            raise ValueError("Not a public key")
-        if algo == cls.id_prime256v1:
-            type = 'p256v1'
-
-        return cls(type, ECC.import_key(data))
-
-    def signature_is_valid(self, data, signature):
-        from Crypto.Signature import DSS
-        from Crypto.Hash import SHA256
-
-        verifier = DSS.new(self.key, 'deterministic-rfc6979')
-        try:
-            verifier.verify(SHA256.new(data), signature)
-            return True
-        except:
-            return False
-
-class Dn:
-    """
-    X-509 Certificate DN low-tech parser/container
-    """
-    def __init__(self, **kw):
-        self.__values = kw
-
-    def __getitem__(self, name):
-        return self.__values[name]
-
-    def __setitem__(self, name, value):
-        self.__values[name] = value
-
-
-    oids = {
-        "2.5.4.3": "commonName",
-        "2.5.4.4": "surname",
-        "2.5.4.5": "serialNumber",
-        "2.5.4.6": "countryName",
-        "2.5.4.7": "localityName",
-        "2.5.4.8": "stateOrProvinceName",
-        "2.5.4.9": "streetAddress",
-        "2.5.4.10": "organizationName",
-        "2.5.4.11": "organizationalUnitName",
-        "2.5.4.12": "title",
-        "2.5.4.13": "description",
-        "2.5.4.14": "searchGuide",
-        }
-
-    @classmethod
-    def from_der(cls, data):
-        kv = {}
-        for item in der_seq(data):
-            s = der_seq(der_set(item)[0])
-            oid = der_oid(s[0])
-            try:
-                k = cls.oids[oid]
-            except KeyError:
-                continue
-            kv[k] = der_str(s[1])
-
-        return cls(**kv)
-        
-class Certificate:
-    """
-    X-509 Certificate DN low-tech parser. Does not verify cert signature.
-    """
-    def __init__(self, issuer, subject, pubkey):
-        self.issuer = issuer
-        self.subject = subject
-        self.pubkey = pubkey
-
-    @classmethod
-    def from_der(cls, data):
-        from Crypto.PublicKey import ECC
-
-        der = der_seq(data)
-
-        payload = der_seq(der[0])
-        info = der[1]
-        sign = der[2]
-
-        fields = list(payload)
-        while not isinstance(fields[0], int):
-            if fields[0][0] & 0xc0 == 0:
-                break
-            fields.pop(0)
-
-        serial = fields[0]
-        signature = der_seq(fields[1])
-        issuer = Dn.from_der(fields[2])
-        subject = Dn.from_der(fields[4])
-        pubkey = PublicKey.from_der(fields[5])
-
-        return cls(issuer, subject, pubkey)
 
 class KeyChain:
     """
     Certificate store, indexes certificates through common name of
     issuer and subject. This is somehow 2D-Doc specific.
     """
-    def __init__(self, certs = []):
-        self.certs = list(certs)
+    def __init__(self, certs = {}, cas = {}):
+        self.certs = dict(certs)
+        self.cas = dict(cas)
 
     def lookup(self, ca_cn, cert_cn):
-        for c in self.certs:
-            if c.issuer["commonName"] == ca_cn and \
-               c.subject["commonName"] == cert_cn:
-                return c
+        name = ca_cn + cert_cn
+        if name in self.certs:
+            return self.certs[name]
+        
+        if ca_cn in self.cas:
+            ca = self.cas[ca_cn]
+        else:
+            # Search for CA
+            chains = files('tdd.chains')
+            ca_file = chains.joinpath(ca_cn + ".der")
+            if not ca_file.is_file():
+                self.download_ca(ca_cn)
+            
+            with ca_file.open("rb") as fd:
+                ca = x509.load_der_x509_certificate(fd.read())
+                self.cas[ca_cn] = ca
 
-        raise KeyError((ca_cn, cert_cn))
+        chains = files('tdd.chains')
+        chain_file = chains.joinpath(name + ".der")
+        if not chain_file.is_file():
+            # Download certificates
+            self.download_certs(ca_cn)
+        with chain_file.open("rb") as fd:
+            cert = x509.load_der_x509_certificate(fd.read())
+        
+        # Verify the certificate is signed by the CA
+        cert.verify_directly_issued_by(ca)
+        self.certs[name] = cert
+        return cert 
 
-    def der_multipart_load(self, fd):
+    def der_multipart_load(self, blob):
         boundary = b"--End\r\n"
         end = b"--End--"
-        blob = fd.read()
         blob = blob.split(end)[0]
         certs = blob.split(boundary)
 
-        for i, c in enumerate(certs):
+        for _, c in enumerate(certs):
             if c.endswith(b'\r\n'):
                 c = c[:-2]
             if not c:
@@ -164,40 +67,104 @@ class KeyChain:
                 if k.lower() == "content-type":
                     ct = v
             if ct == "application/pkix-cert":
-                self.der_add(data)
+                self.save_der(data)
 
-    def der_add(self, der):
+    def save_der(self, der, ca=False):
         try:
-            cert = Certificate.from_der(der)
+            cert = x509.load_der_x509_certificate(der)
         except ValueError:
             return
-        self.certs.append(cert)
+        
+        cn_attributes = cert.issuer.get_attributes_for_oid(NameOID.COMMON_NAME)
+        issuer_cn = cn_attributes[0].value if cn_attributes else None
+        cn_attributes = cert.subject.get_attributes_for_oid(NameOID.COMMON_NAME)
+        subject_cn = cn_attributes[0].value if cn_attributes else None
+        
+        if ca:
+            issuer_cn = ""
 
-def internal():
-    """
-    Spawn a keychain with all built-in certificated loaded.
-    """
-    from importlib.resources import files
+        chains = files('tdd.chains')
+        name = issuer_cn + subject_cn
+        chain_file = chains.joinpath(name + ".der")
+        with chain_file.open("wb") as f:
+            f.write(
+                cert.public_bytes(
+                    encoding=serialization.Encoding.DER
+                )
+            )
+    
+    def download_ca(self, ca_cn):
+        ns = {"tsl": "http://uri.etsi.org/02231/v2#"}
 
-    k = KeyChain()
-    chains = files('tdd.chains')
-    for chain in ["FR01", "FR02", "FR03", "FR04", "FR05"]:
-        chain_file = chains.joinpath(chain + ".der")
-        with chain_file.open('rb') as fd:
-            k.der_multipart_load(fd)
-    with chains.joinpath("FR00.der").open('rb') as fd:
-        k.der_add(fd.read())
-    return k
+        tsl = files('tdd.chains').joinpath("tsl_signed.xml")
+        with tsl.open("rb") as f:
+            tree = etree.parse(f)
+
+        cert_b64_list = tree.xpath(
+            """
+            //tsl:TSPTradeName[tsl:Name[@xml:lang='en']=$ac_name]
+                /ancestor::tsl:TrustServiceProvider
+                /tsl:TSPServices
+                /tsl:TSPService
+                /tsl:ServiceInformation
+                /tsl:ServiceDigitalIdentity
+                /tsl:DigitalId
+                /tsl:X509Certificate/text()
+            """,
+            ac_name=ca_cn,
+            namespaces=ns
+        )
+    
+        if len(cert_b64_list) == 0:
+            print("CA not found")
+            return False
+        else:
+            self.save_der(b64decode(cert_b64_list[0]), ca=True)
+        
+        return True
+
+    def download_certs(self, ca_cn):
+        tsl = files('tdd.chains').joinpath("tsl_signed.xml")
+        with tsl.open("rb") as f:
+            tree = etree.parse(f)
+
+        ns = {"tsl": "http://uri.etsi.org/02231/v2#"}
+        uri_list = tree.xpath(
+            """
+            //tsl:TSPTradeName[tsl:Name[@xml:lang='fr']=$ac_name]
+                /ancestor::tsl:TSPInformation
+                /tsl:TSPInformationURI
+                /tsl:URI[@xml:lang='fr']/text()
+            """,
+            ac_name=ca_cn,
+            namespaces=ns
+        )
+        if len(uri_list) == 0:
+            print("URL not found")
+        else:
+            print(f"Loading: {uri_list[0]}")
+            headers = {
+                "User-Agent": "Mozilla/5.0 (X11; Linux x86_64)"
+            }
+            with requests.get(uri_list[0], headers=headers) as response:
+                data = response.content
+                self.der_multipart_load(data)
 
 if __name__ == "__main__":
     import sys
 
+    k = KeyChain()
     if len(sys.argv) < 2:
-        k = internal()
+        # Test certificate
+        ca_cn = "FR00"
+        cert_cn = "001"
+        test_chains = files('tdd.chains').joinpath('FR000001.der')
+        with test_chains.open("rb") as fd:
+            test_cert = x509.load_der_x509_certificate(fd.read())
+        k.certs["FR000001"] = test_cert
     else:
-        k = KeyChain()
-        for fn in sys.argv[1:]:
-            k.der_multipart_load(open(fn, 'rb'))
+        for name in sys.argv[1:]:
+            k.lookup(name[0:4], name[4:])
 
-    for c in k.certs:
-        print(c.issuer["commonName"], c.subject["commonName"])
+    for (name, c) in k.certs.items():
+        print(f"name: {name} serial number: {c.serial_number}")
