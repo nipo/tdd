@@ -1,6 +1,10 @@
 from .header import Header
 from .message import C40Message
 from base64 import b32decode
+from cryptography.exceptions import InvalidSignature
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import ec
+from cryptography.hazmat.primitives.asymmetric.utils import encode_dss_signature
 
 __doc__ = """
 Documentation representation.
@@ -44,4 +48,11 @@ class TwoDDoc:
         available, KeyError is raised.
         """
         cert = keychain.lookup(self.header.ca_id, self.header.cert_id)
-        return cert.pubkey.signature_is_valid(self.signed_data, self.signature)
+        r = int.from_bytes(self.signature[:32], "big")
+        s = int.from_bytes(self.signature[32:], "big")
+        dss_sig = encode_dss_signature(r, s)
+        try:
+            cert.public_key().verify(dss_sig, self.signed_data, ec.ECDSA(hashes.SHA256()))
+        except InvalidSignature:
+            return False
+        return True

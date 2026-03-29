@@ -18,7 +18,7 @@ setup(
     use_2to3 = False,
     packages = find_packages(),
     install_requires = [
-        "pycryptodome",
+        "cryptography",
     ],
     dependency_links=[
     ],
