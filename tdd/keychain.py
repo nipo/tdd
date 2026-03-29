@@ -1,5 +1,6 @@
 from cryptography import x509
 from cryptography.x509.oid import NameOID
+from datetime import datetime, timezone
 from io import BytesIO
 from pathlib import Path
 
@@ -9,13 +10,18 @@ USER_CHAINS_DIR = Path.home() / ".config" / "tdd" / "chains"
 
 MULTIPART_BOUNDARY = b"--End"
 
+class ExpiredCertificateError(Exception):
+    """Raised when a certificate has expired or is not yet valid."""
+    pass
+
 class KeyChain:
     """
     Certificate store, indexes certificates through common name of
     issuer and subject. This is somehow 2D-Doc specific.
     """
-    def __init__(self):
+    def __init__(self, check_expiry=True):
         self.certs = []
+        self.check_expiry = check_expiry
 
     @staticmethod
     def _cn(name):
@@ -28,6 +34,8 @@ class KeyChain:
         Find a certificate by CA and subject common names.
         Verifies the certificate is signed by the CA before returning.
         Raises KeyError if certificate or CA not found.
+        Raises ExpiredCertificateError if check_expiry is True and
+        the certificate is expired or not yet valid.
         """
         cert = None
         ca = None
@@ -46,6 +54,17 @@ class KeyChain:
 
         if ca is not None:
             cert.verify_directly_issued_by(ca)
+
+        if self.check_expiry:
+            now = datetime.now(timezone.utc)
+            if now < cert.not_valid_before_utc:
+                raise ExpiredCertificateError(
+                    f"Certificate {cert_cn} not yet valid "
+                    f"(valid from {cert.not_valid_before_utc})")
+            if now > cert.not_valid_after_utc:
+                raise ExpiredCertificateError(
+                    f"Certificate {cert_cn} expired "
+                    f"(expired {cert.not_valid_after_utc})")
 
         return cert
 
@@ -93,16 +112,17 @@ class KeyChain:
             with entry.open('rb') as f:
                 self.load_der_blob(f.read())
 
-def internal(include_test=False):
+def internal(include_test=False, check_expiry=True):
     """
     Spawn a keychain with all built-in certificates loaded,
     then load any user-provisioned certificates from ~/.config/tdd/chains/.
 
     If include_test is True, also load the FR00 test/spec CA certificate.
+    If check_expiry is False, skip validity period checks on lookup.
     """
     from importlib.resources import files
 
-    k = KeyChain()
+    k = KeyChain(check_expiry=check_expiry)
     chains = files('tdd.chains')
 
     for entry in sorted(chains.iterdir(), key=lambda e: e.name):
