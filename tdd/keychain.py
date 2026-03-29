@@ -93,15 +93,25 @@ class KeyChain:
             with entry.open('rb') as f:
                 self.load_der_blob(f.read())
 
-def internal():
+def internal(include_test=False):
     """
     Spawn a keychain with all built-in certificates loaded,
     then load any user-provisioned certificates from ~/.config/tdd/chains/.
+
+    If include_test is True, also load the FR00 test/spec CA certificate.
     """
     from importlib.resources import files
 
     k = KeyChain()
-    k.load_dir(files('tdd.chains'))
+    chains = files('tdd.chains')
+
+    for entry in sorted(chains.iterdir(), key=lambda e: e.name):
+        if not entry.name.endswith('.der') or not entry.is_file():
+            continue
+        if not include_test and entry.name.startswith('FR00'):
+            continue
+        with entry.open('rb') as f:
+            k.load_der_blob(f.read())
 
     if USER_CHAINS_DIR.is_dir():
         k.load_dir(USER_CHAINS_DIR)

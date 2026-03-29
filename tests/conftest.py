@@ -37,4 +37,4 @@ def keychain():
     Load the internal keychain with bundled certificates.
     """
     from tdd.keychain import internal
-    return internal()
+    return internal(include_test=True)

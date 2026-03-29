@@ -17,7 +17,7 @@ line with:
 
 .. code:: shell
 
-  $ python3 -m tdd.dump tests/spec_samples/3.1.3/15.2.2/17.txt
+  $ python3 -m tdd.dump --test-ca tests/spec_samples/3.1.3/15.2.2/17.txt
   tests/spec_samples/3.1.3/15.2.2/17.txt:
   Version: 3
   Country: FR
@@ -66,7 +66,8 @@ Certificate Chains
 
 The library ships with bundled certificate chains from the French ANTS
 Trust Service List (TSL). These are loaded automatically by
-``keychain.internal()``.
+``keychain.internal()``. Test CA "FR00" is not loaded automatically
+unless explicitly asked for.
 
 To download additional or updated chains, install the fetch extras and
 run:

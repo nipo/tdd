@@ -36,17 +36,19 @@ def dump(doc, keychain = None):
             print("Key not found:", e)
 
 if __name__ == "__main__":
-    import sys
+    import argparse
     from .keychain import internal
 
-    keychain = internal()
+    parser = argparse.ArgumentParser(description="Dump 2D-Doc content")
+    parser.add_argument("files", nargs="+", metavar="code.txt",
+                        help="2D-Doc text files to dump")
+    parser.add_argument("--test-ca", action="store_true",
+                        help="Load FR00 test CA certificate")
+    args = parser.parse_args()
 
-    if len(sys.argv) < 2:
-        print("Usage: python3 -m tdd.dump [code.txt, ...]")
-        print("Dump all passed files")
-        sys.exit(1)
-    
-    for fn in sys.argv[1:]:
+    keychain = internal(include_test=args.test_ca, check_expiry=not args.test_ca)
+
+    for fn in args.files:
         with open(fn, 'r') as fd:
             blob = fd.read().strip()
         print(f"{fn}:")
