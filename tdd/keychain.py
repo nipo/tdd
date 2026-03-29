@@ -1,10 +1,13 @@
 from cryptography import x509
 from cryptography.x509.oid import NameOID
+from io import BytesIO
 from pathlib import Path
 
 __doc__ = "Keychain management"
 
 USER_CHAINS_DIR = Path.home() / ".config" / "tdd" / "chains"
+
+MULTIPART_BOUNDARY = b"--End"
 
 class KeyChain:
     """
@@ -71,9 +74,24 @@ class KeyChain:
     def der_add(self, der):
         try:
             cert = x509.load_der_x509_certificate(der)
-        except ValueError:
+        except (ValueError, Exception):
             return
         self.certs.append(cert)
+
+    def load_der_blob(self, data):
+        """Load a DER blob, auto-detecting multipart vs individual certificate."""
+        if MULTIPART_BOUNDARY in data:
+            self.der_multipart_load(BytesIO(data))
+        else:
+            self.der_add(data)
+
+    def load_dir(self, directory):
+        """Load all .der files from a directory (Path or importlib Traversable)."""
+        for entry in sorted(directory.iterdir(), key=lambda e: e.name):
+            if not entry.name.endswith('.der') or not entry.is_file():
+                continue
+            with entry.open('rb') as f:
+                self.load_der_blob(f.read())
 
 def internal():
     """
@@ -83,20 +101,10 @@ def internal():
     from importlib.resources import files
 
     k = KeyChain()
+    k.load_dir(files('tdd.chains'))
 
-    # Load bundled certificate chains
-    chains = files('tdd.chains')
-    for chain in ["FR01", "FR02", "FR03", "FR04", "FR05"]:
-        chain_file = chains.joinpath(chain + ".der")
-        with chain_file.open('rb') as fd:
-            k.der_multipart_load(fd)
-    with chains.joinpath("FR00.der").open('rb') as fd:
-        k.der_add(fd.read())
-
-    # Load user-provisioned certificates
     if USER_CHAINS_DIR.is_dir():
-        for der_file in sorted(USER_CHAINS_DIR.glob("*.der")):
-            k.der_add(der_file.read_bytes())
+        k.load_dir(USER_CHAINS_DIR)
 
     return k
 
@@ -108,7 +116,7 @@ if __name__ == "__main__":
     else:
         k = KeyChain()
         for fn in sys.argv[1:]:
-            k.der_multipart_load(open(fn, 'rb'))
+            k.load_der_blob(Path(fn).read_bytes())
 
     for c in k.certs:
         print(k._cn(c.issuer), k._cn(c.subject))

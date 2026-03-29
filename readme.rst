@@ -61,6 +61,31 @@ A basic parsing sessions boils down to:
   >>> c.signature_is_valid(chain)
   True
 
+Certificate Chains
+==================
+
+The library ships with bundled certificate chains from the French ANTS
+Trust Service List (TSL). These are loaded automatically by
+``keychain.internal()``.
+
+To download additional or updated chains, install the fetch extras and
+run:
+
+.. code:: shell
+
+  $ pip install tdd[fetch]
+  $ python -m tdd.fetch_chains
+
+This downloads chains to ``~/.config/tdd/chains/``, which are
+automatically loaded after the bundled ones.
+
+To update the bundled chains shipped with the package (for
+maintainers):
+
+.. code:: shell
+
+  $ python setup.py fetch_chains
+
 TODO
 ====
 
@@ -71,13 +96,6 @@ TODO
 * Support for "binary" V4 messages
 
   * And support for V4 ancillary data
-
-* Proper certificate chain handling
-
-  * Full certificate chain verification
-
-  * Automatic chain lookup and updates (for now, this is lazy and
-    there is a copy of public keychains in package).
 
 License
 =======

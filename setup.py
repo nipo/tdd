@@ -1,4 +1,21 @@
+from pathlib import Path
 from setuptools import setup, find_packages
+from setuptools import Command
+
+class FetchChains(Command):
+    """Download certificate chains from ANTS TSL into tdd/chains/."""
+    description = "download certificate chains from ANTS TSL"
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        from tdd.fetch_chains import main
+        main(["-o", str(Path(__file__).parent / "tdd" / "chains")])
 
 setup(
     name = "tdd",
@@ -20,8 +37,9 @@ setup(
     install_requires = [
         "cryptography",
     ],
-    dependency_links=[
-    ],
+    cmdclass={
+        'fetch_chains': FetchChains,
+    },
     extras_require={
         'fetch': [
             'lxml',

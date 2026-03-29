@@ -2,11 +2,13 @@
 Certificate chain downloader for 2D-Doc.
 
 Usage:
-    python -m tdd.fetch_chains [CA_NAME ...]
+    python -m tdd.fetch_chains [-o DIR] [CA_NAME ...]
 
 Downloads certificate chains from the ANTS TSL (Trust Service List)
-and saves them to ~/.config/tdd/chains/.
+and saves individual DER files.
 
+Default output: ~/.config/tdd/chains/
+Use -o tdd/chains to update the bundled certificates.
 If no CA names are specified, downloads all available chains.
 """
 
@@ -139,13 +141,29 @@ class ChainFetcher:
                 print(f"Error fetching {ca_name}: {e}", file=sys.stderr)
 
 
-def main():
-    fetcher = ChainFetcher()
-    if len(sys.argv) > 1:
-        for ca_name in sys.argv[1:]:
+def main(args=None):
+    parser = argparse.ArgumentParser(
+        description="Download 2D-Doc certificate chains from ANTS TSL",
+    )
+    parser.add_argument(
+        "-o", "--output-dir",
+        type=Path,
+        default=None,
+        help="Output directory (default: ~/.config/tdd/chains/)",
+    )
+    parser.add_argument(
+        "ca_names",
+        nargs="*",
+        help="CA names to fetch (default: all)",
+    )
+    parsed = parser.parse_args(args)
+
+    fetcher = ChainFetcher(output_dir=parsed.output_dir)
+    print(f"Output directory: {fetcher.output_dir}")
+    if parsed.ca_names:
+        for ca_name in parsed.ca_names:
             fetcher.fetch(ca_name)
     else:
-        print(f"Fetching all chains to {fetcher.output_dir}")
         fetcher.fetch_all()
     print("Done.")
 
