@@ -1,7 +1,10 @@
 from cryptography import x509
 from cryptography.x509.oid import NameOID
+from pathlib import Path
 
 __doc__ = "Keychain management"
+
+USER_CHAINS_DIR = Path.home() / ".config" / "tdd" / "chains"
 
 class KeyChain:
     """
@@ -74,11 +77,14 @@ class KeyChain:
 
 def internal():
     """
-    Spawn a keychain with all built-in certificates loaded.
+    Spawn a keychain with all built-in certificates loaded,
+    then load any user-provisioned certificates from ~/.config/tdd/chains/.
     """
     from importlib.resources import files
 
     k = KeyChain()
+
+    # Load bundled certificate chains
     chains = files('tdd.chains')
     for chain in ["FR01", "FR02", "FR03", "FR04", "FR05"]:
         chain_file = chains.joinpath(chain + ".der")
@@ -86,6 +92,12 @@ def internal():
             k.der_multipart_load(fd)
     with chains.joinpath("FR00.der").open('rb') as fd:
         k.der_add(fd.read())
+
+    # Load user-provisioned certificates
+    if USER_CHAINS_DIR.is_dir():
+        for der_file in sorted(USER_CHAINS_DIR.glob("*.der")):
+            k.der_add(der_file.read_bytes())
+
     return k
 
 if __name__ == "__main__":

@@ -12,7 +12,7 @@ setup(
         "Programming Language :: Python",
     ],
     package_data = {
-        'tdd': ['chains/*.der'],
+        'tdd': ['chains/*.der', 'chains/tsl_signed.xml'],
     },
     include_package_data = True,
     use_2to3 = False,
@@ -23,9 +23,13 @@ setup(
     dependency_links=[
     ],
     extras_require={
+        'fetch': [
+            'lxml',
+            'requests',
+        ],
         'dev': [
             'pytest',
             'pyyaml',
-        ]
+        ],
     },
 )
