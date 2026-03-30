@@ -19,7 +19,7 @@ class FetchChains(Command):
 
 setup(
     name = "tdd",
-    version = "0.1",
+    version = "0.2",
     description = "2D-Doc toolsuite",
     author = "Nicolas Pouillon",
     author_email = "nipo@ssji.net",
