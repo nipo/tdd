@@ -115,7 +115,8 @@ class ChainFetcher:
         # Download and unbundle leaf certs
         uri = self._get_bundle_uri(ca_name)
         print(f"Downloading {uri}")
-        response = requests.get(uri)
+        headers = {'User-Agent': 'tdd'}
+        response = requests.get(uri, headers=headers)
         response.raise_for_status()
 
         cert_ders = self._unbundle_multipart(response.content)
