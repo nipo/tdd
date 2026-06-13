@@ -4,8 +4,10 @@ import re
 __doc__ = """
 
 2D-Doc data definitions from
-"Specifications-techniques-des-codes-a-barres_2D-Doc_v3.1.3.pdf" from
-ANTS website.  This only defines perimeter ID 1.
+"Specifications techniques 2D-DOC" v 3.3.8 from
+France Titres website: https://pub.ants.gouv.fr/2D-DOC/DOCUMENTATION/04_Specifications_Techniques/FranceTitres_DCAT_2D-DOC_V1_04_Specifications_Techniques.pdf.
+
+This only defines perimeter ID 1.
 
 """
 
@@ -80,6 +82,9 @@ class StringAZ09DashSl(String):
 
 class StringAZ09SpAtDash(String):
     allowed_format = re.compile(r'[A-Z0-9@\' -]*')
+
+class StringAZ09AtDashDot(String):
+    allowed_format = re.compile(r'[A-Z0-9@.-]*')
 
 class Numeric(String):
     allowed_format = re.compile(r'[0-9]*')
@@ -277,43 +282,61 @@ c40 = Definitions(
               Doctype("01", "Justificatif de domicile", "Facture"),
               Doctype("02", "Justificatif de domicile", "Avis TH"),
               Doctype("03", "Justificatif de domiciliation bancaire", "RIB"),
-              Doctype("05", "Justificatif de domiciliation bancaire", "SEPAmail"),
               Doctype("04", "Justificatif de ressources", "Avis IR"),
+              Doctype("05", "Justificatif de domiciliation bancaire", "SEPAmail"),
               Doctype("06", "Justificatif de ressources", "Bulletin de salaire"),
-              Doctype("11", "Justificatif de ressources", "Relevé de compte"),
-              Doctype("11", "Justificatif de ressources", "Relevé de compte"),
-              Doctype("11", "Justificatif de ressources", "Relevé de compte"),
-              Doctype("07",  "Justificatif d'identité", "Titre d’identité"),
-              Doctype("08",  "Justificatif d'identité", "MRZ"),
-              Doctype("13", "Justificatif d'identité", "Document étranger"),
+              Doctype("07", "Justificatif d’identité", "Titre d’identité"),
+              Doctype("08", "Justificatif d’identité", "MRZ"),
               Doctype("09", "Justificatif fiscal", "Facture étendue"),
-              Doctype("10", "Justificatif d'emploi", "Contrat de travail"),
-              Doctype("15", "Justificatif d'emploi", "Attestation de décision favorable d'une demande d'autorisation de travail"),
-              Doctype("A0", "Justificatif de véhicule", "Certificat de qualité de l'air"),
-              Doctype("A7", "Justificatif de véhicule", "Certificat de qualité de l'air (V2)"),
+              Doctype("10", "Justificatif d’emploi", "Contrat de travail"),
+              Doctype("11", "Justificatif de ressources", "Relevé de compte"),
+              Doctype("12", "Justificatif juridique/judiciaire", "Acte d’huissier"),
+              Doctype("13", "Justificatif d’identité", "Document étranger"),
               Doctype("14", "Justificatif de véhicule", "Attestation DICEM"),
+              Doctype("15", "Justificatif d’emploi", "Attestation de décision favorable d’une demande d’autorisation de travail"),
+              Doctype("16", "Justificatif d’Asile", "Attestation de Demande d’Asile"),
+              Doctype("17", "Justificatif d’Asile", "Attestation de fin de droit à l’allocation pour demandeur d’asile (ADA)"),
+              Doctype("18", "Justificatif de ressources", "Avis de Situation Déclarative à l’Impôt sur les Revenus"),
+              Doctype("19", "Justificatif fiscal", "Déclarations de dons"),
+              Doctype("20", "Justificatif fiscal", "Déclarations de cession de droits sociaux"),
+              Doctype("21", "Justificatif fiscal", "Attestation 2041-ASK"),
+              Doctype("22", "Justificatif juridique/judiciaire", "Carte Européenne d’Arme à Feu (CEAF)"),
+              Doctype("23", "Justificatif de santé", "Certificat de Preuve de Vie"),
+              Doctype("24", "Justificatif de ressources", "Avis de Situation Déclarative à l’Impôt sur les Revenus (V2)"),
+              Doctype("25", "Justificatif d’emploi", "Autorisation de Travail – AES Métier en Tension"),
+              Doctype("26", "Certificat de conformité", "Certificat de conformité sûreté aéroportuaire"),
+              Doctype("27", "Justificatif de ressources", "Avis de Situation Déclarative à l’Impôt sur les Revenus (V3)"),
+              Doctype("28", "Justificatif de ressources", "Avis d’impôt sur les Revenus (V2)"),
+              Doctype("29", "Justificatif d’emploi", "Attestation d’Activité Professionnelle"),
+              Doctype("A0", "Justificatif de véhicule", "Certificat de qualité de l’air"),
               Doctype("A1", "Justificatif permis de conduire", "Courrier Permis à points"),
               Doctype("A2", "Justificatif de santé", "Carte Mobilité Inclusion"),
-              Doctype("A3", "Justificatif d'activité", "Macaron VTC"),
-              Doctype("A5", "Justificatif d'activité", "Carte T3P"),
-              Doctype("A6", "Justificatif d'activité", "Carte Professionnelle Sapeur-Pompier"),
-              Doctype("A9", "Justificatif d'activité", "Permis de chasser"),
+              Doctype("A3", "Justificatif d’activité", "Macaron VTC"),
               Doctype("A4", "Justificatif médical", "Certificat de décès"),
+              Doctype("A5", "Justificatif d’activité", "Carte T3P"),
+              Doctype("A6", "Justificatif d’activité", "Carte Professionnelle Sapeur-Pompier"),
+              Doctype("A7", "Justificatif de véhicule", "Certificat de qualité de l’air (V2)"),
+              Doctype("A8", "Certificat d’immatriculation", "Certificat de cession électronique"),
+              Doctype("A9", "Justificatif d’activité", "Permis de chasser"),
+              Doctype("AA", "Justificatif permis de conduire", "Arrêtés Permis de conduire"),
+              Doctype("AB", "Justificatif permis de conduire", "Relevé d’Information Permis de Conduire"),
+              Doctype("AC", "Justificatif d’activité", "Licence de conducteur de train"),
+              Doctype("AD", "Justificatif permis de conduire", "Certificat de réussite à l’Examen du Permis de Conduire (CEPC)"),
+              Doctype("AE", "Justificatif médical", "Certificat de décès V2"),
               Doctype("B0", "Justificatif académique", "Diplôme"),
               Doctype("B1", "Justificatif académique", "Attestation de Versement de la Contribution à la Vie Etudiante"),
-              Doctype("12", "Justificatif juridique/judiciaire", "Acte d'huissier"),
-              Doctype("A8", "Certificat d’immatriculation", "Certificat de session électronique"),
+              Doctype("B2", "Résultats des tests virologiques", "Test COVID"),
+              Doctype("B3", "Résultats des tests virologiques", "Titrage antirabique"),
               Doctype("C1", "Autorisations douanière", "Renseignement Tarifaire Contraignant"),
               Doctype("C2", "Autorisations douanière", "Accord Préalable pour le transfert d’armes"),
               Doctype("C3", "Autorisations douanière", "Permis de transfert d’armes à feu et de munitions"),
               Doctype("C4", "Autorisations douanière", "Autorisation d’importation de matériels de guerre"),
               Doctype("C5", "Autorisations douanière", "Licence d’exportation d’armes à feu"),
               Doctype("C6", "Autorisations douanière", "Agrément de transfert d’armes à feu et de munitions"),
-              Doctype("B2", "Résultats des tests virologiques", "Test COVID"),
+              Doctype("C7", "Autorisations douanière", "Bon de livraison"),
+              Doctype("C8", "Autorisations douanière", "Bon de livraison V2"),
+              Doctype("C9", "Caducée Infirmier", "Caducée Infirmier"),
               Doctype("L1", "Attestation Vaccinale", "Attestation Vaccinale"),
-              Doctype("16", "Justificatif d’Asile", "Attestation de Demande d’Asile"),
-              Doctype("17", "Justificatif d’Asile", "Attestation de fin de droit à l'allocation pour demandeur d'asile (ADA"),
-              Doctype("L1", "Caducée Infirmier", "Caducée Infirmier"),
 
               Group("Identifiants de données complémentaires du code 2D-DOC",
                     Definition("01", "Identifiant unique du document", 0, None, String),
@@ -394,9 +417,9 @@ c40 = Definitions(
                     Definition("43", "Nombre de parts", 0, 5, Decimal),
                     Definition("44", "Référence d’avis d’impôt", 13, 13, StringAZ09Sp),
                     Definition("45", "Année des revenus", 4, 4, Numeric0),
-                    Definition("46", "Déclarant 1", 0, 38, StringAZ),
+                    Definition("46", "Déclarant 1", 0, 38, StringAZSp),
                     Definition("47", "Numéro fiscal du déclarant 1", 13, 13, Numeric0),
-                    Definition("48", "Déclarant 2", 0, 38, StringAZ),
+                    Definition("48", "Déclarant 2", 0, 38, StringAZSp),
                     Definition("49", "Numéro fiscal du déclarant 2", 13, 13, Numeric0),
                     Definition("4A", "Date de mise en recouvrement",  8, 8, StringAZ),
                     Definition("4B", "Date de la déclaration",  8, 8, JJMMAAAA),
@@ -419,6 +442,11 @@ c40 = Definitions(
                     Definition("4S", "Millésime", 4, 4, Numeric0),
                     Definition("4T", "Administration cantonale suisse", 0, 30, StringAZSp),
                     Definition("4U", "Dénomination sociale de l’employeur", 0, 38, StringAZ09Sp),
+                    Definition("4V", "Impôt sur le revenu net (IR)", 0, 10, Numeric),
+                    Definition("4W", "Reste à payer", 0, 10, Numeric),
+                    Definition("4X", "Retenue à la source", 0, 10, Numeric),
+                    Definition("4Y", "Adresse complète du domicile", 1, 155, StringAZ09SpSl),
+                    Definition("4Z", "Prélèvements sociaux nets (PS)", 0, 10, Numeric),
               ),
 
               Group("Identifiants de données relatives à l’activité professionnelle",
@@ -521,6 +549,11 @@ c40 = Definitions(
                     Definition("7N", "Lieu de validation du certificat de décès", 0, 128, StringAZ09Sp),
                     Definition("7O", "Certificat de décès supplémentaire", 1, 1, Boolean),
                     Definition("7P", "Identifiant du certificat", 16, 16, StringAZ09),
+                    Definition("87", "Assuré - Nom patronymique", 0, 63, StringAZSp),
+                    Definition("88", "Assuré - Identifiant", 5, 10, Numeric),
+                    Definition("89", "Assuré - Email", 1, 64, StringAZ09AtDashDot),
+                    Definition("8A", "Assuré - Date de début de campagne", 8, 8, JJMMAAAA),
+                    Definition("8B", "Assuré - Identifiant enquête MCE", 5, 10, Numeric),
               ),
 
               Group("Identifiants relatifs aux activités professionnelles",
