@@ -7,9 +7,13 @@ __all__ = ["Header"]
 EPOCH = date(2000, 1, 1)
 
 def date_parse_text(code):
+    if code == "FFFF":
+        return None
     return EPOCH + timedelta(days = int(code, 16))
 
 def date_parse_bin(code):
+    if code == b"FFFF":
+        return None
     v = int.from_bytes(code, "big")
     return date(year = v % 10000,
                 month = v // 1000000,
@@ -17,8 +21,12 @@ def date_parse_bin(code):
 
 def date_encode(d, mode = "c40"):
     if mode == "c40":
+        if d == None:
+            return "FFFF"
         return f'{(d - EPOCH).days:04X}'
     elif mode == "bin":
+        if d == None:
+            return b"FFFF"
         v = d.month * 1000000 + d.day * 10000 + d.year
         return v.to_bytes(3, 'big')
     else:
